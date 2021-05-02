@@ -1,6 +1,7 @@
 <?php 
 // Wating Sensor Loop Detector I
 include 'koneksi.php';
+include 'erorHandler.php';
 include 'Read.php';
 include 'Write.php';
 
@@ -8,6 +9,8 @@ include 'GenerateId.php';
 include 'CaptureImages.php';
 include 'PritBarcode.php';
 
+
+Write($connfig,'MT00004');
 //1. Kendaraan Terdeteksi oleh LD1 Sensor (php READ ='IN3ON')
 while(true){
 	$data= Read($connfig);
@@ -28,7 +31,7 @@ while(true){
 				// 5. KAMERA Melakukan Capture Hasil Capture Insert ke Folder dengan folder name 'ID' (php Capture_Vehcle())
 				CaptureImages($CameraConfig);
 				// 6. ID & date log insert to DB 
-				mysqli_query($conn, "INSERT INTO `tb_gate` (`id`, `gate`,date) VALUES ('$id', 'GATE MOBIL',now());");
+				mysqli_query($conn, "INSERT INTO `tb_entry` (`id`, `gate_id`,date) VALUES ('$id', '01',now());");
 				// 7. PHP mengirim Perintah Print Barcode (php PrintBarcode('Serial-Entry'))
 				PrintBarcode($id,$connfig);
 				// 8. Setelah Driver Mengambil Kertas Barcode, Controller Membuka Gate (php Write ='OUT1ON')
