@@ -16,6 +16,7 @@ $route['user'] = 'master/User';
 
 
 $route['tiket'] = 'gate/Tiket';
+$route['parkir'] = 'gate/Parkir';
 
 
 $route['logout'] = 'auth/logout';
