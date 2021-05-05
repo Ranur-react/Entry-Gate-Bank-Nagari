@@ -32,7 +32,7 @@ while(true){
 				// 5. KAMERA Melakukan Capture Hasil Capture Insert ke Folder dengan folder name 'ID' (php Capture_Vehcle())
 				CaptureImages($CameraConfig);
 				// 6. ID & date log insert to DB 
-				mysqli_query($conn, "INSERT INTO `tb_entry` (`id`, `gate_id`,date) VALUES ('$id', '01',now());");
+				mysqli_query($conn, "INSERT INTO `tb_entry` (`id_entry`, `gate_id`,date) VALUES ('$id', '01',now());");
 				// 7. PHP mengirim Perintah Print Barcode (php PrintBarcode('Serial-Entry'))
 				PrintBarcode($id,$connfig);
 				// 8. Setelah Driver Mengambil Kertas Barcode, Controller Membuka Gate (php Write ='OUT1ON')
