@@ -1,0 +1,9 @@
+- Membuat Alat Selalu Aktif tanpa Henti 24 Jam
+
+- Menampilkan Indikator Alat Dalam Mode Sleep/Down pada Komputer Operator
+
+* Membuat Tombol ON/OFF Pada Komputer Operator
+
+* Menuat Alat Auto ON saat Komputer Operator dihidupkan
+
+- Komputer Operator Menjadi Server (Tidak Pernah Mati) 

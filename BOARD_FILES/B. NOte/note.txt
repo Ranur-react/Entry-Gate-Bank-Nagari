@@ -1,0 +1,23 @@
+Entry (Controller Pertama)
+
+1. Kendaraan Terdeteksi oleh LD1 Sensor (php READ ='IN3ON')
+2. Jika Ada Kendaraan "Voice Welcome" Track 001 diputar (php WRITE ='MT00001')
+3. Driver MENEKAN  Tombol "HIJAU" (php READ ='IN1ON')
+4. Generate ID Parkir
+5. KAMERA Melakukan Capture Hasil Capture Insert ke Folder dengan folder name 'ID' (php Capture_Vehcle())
+6. ID & date log insert to DB 
+7. PHP mengirim Perintah Print Barcode (php PrintBarcode('Serial-Entry'))
+
+8. Setelah Driver Mengambil Kertas Barcode, Controller Membuka Gate (php Write ='OUT1ON')
+6. Setelahg Kendaraan Terdeteksi LD2 Sensor, Controller Menutup Gate(php Write ='OUT2ON')
+
+
+Exit (Controller kedua)
+
+1. Operator Menginput Serial_Entry dengan Barcode Reader (php database_Check())
+2. Operator Melihat Hasil Capture sesuai Serial_Entry
+3. Jika Sesuai, Operator Menginputkan Nomor Plat Kendaraan yang dapat Dilihat dari Camera Streamming
+4. Operator Klik Tombol SUBMIT Kendaraan Keluar 
+5. Kamera Streamming Exit melakukan Capture lagi (php Capture_Vehcle())
+6. Gate Exit Terbuka (php Write ='OUT1ON')
+7. Setelah Kendaraan berada pada LD2 Sensor Exit maka  Gate Tertutup (php Write ='OUT2ON')

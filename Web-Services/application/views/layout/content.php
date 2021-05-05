@@ -56,30 +56,7 @@
 			<strong>Hei <?= user() ?></strong>, selamat datang kembali.
 		</div>
 	</div>
-	<div class="col-md-4">
-		<div class="box box-widget widget-user-2">
-			<div class="widget-user-header bg-red">
-				<div class="widget-user-image">
-					<img class="img-circle" src="<?= foto() ?>">
-				</div>
-				<h3 class="widget-user-username"><?= user() ?></h3>
-				<h5 class="widget-user-desc">Kelas: </h5>
-			</div>
-			<div class="box-footer no-padding">
-				<ul class="nav nav-stacked">
-					<?php if (level() == 2) { ?>
-						<li><a href="#">NIP <span class="pull-right"><?= nisn() ?></span></a></li>
-					<?php } else if (level() == 3) { ?>
-						<li><a href="#">NISN <span class="pull-right"><?= nisn() ?></span></a></li>
-					<?php } ?>
-					<li><a href="#">Email <span class="pull-right">email@gmail.com</span></a></li>
-					<li><a href="#">Role <span class="pull-right"><?= role() ?></span></a></li>
-					<li><a href="#">Terakhir login <span class="pull-right">Sen, 01-01-2020 | 09.00</span></a></li>
-				</ul>
-				<a href="<?= site_url('profil') ?>" class="btn btn-default btn-flat btn-block">Update Profile</a>
-			</div>
-		</div>
-	</div>
+
 	<div class="col-md-4">
 		<div class="box box-success">
 			<div class="box-header">
@@ -103,7 +80,7 @@
 					<p class="message">
 						<a href="#" class="name">
 							<small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
-							Alexander Pierce
+		 					Alexander Pierce
 						</a>
 						I would like to meet you to discuss the latest news..
 					</p>
@@ -184,148 +161,4 @@
 			</div>
 		</div>
 	</div>
-	<?php if ($urls == 'siswa') { ?>
-		<div class="col-md-4">
-			<div class="box box-primary">
-				<div class="box-header with-border">
-					<h3 class="box-title">Tugas Terbaru</h3>
-				</div>
-				<div class="box-body">
-					<ul class="products-list product-list-in-box">
-						<li class="item">
-							<div class="product-info tugas">
-								<a href="javascript:void(0)" class="product-title">Tugas 1
-									<span class="text-muted pull-right">Deadline: 01-01-2020 | 09:00</span>
-								</a>
-								<span class="product-description">
-									Mapel: Mapel 1 | Guru: Guru1
-								</span>
-								<a href="">
-									<span class="label label-success pull-right">Belum Dikumpul</span>
-								</a>
-							</div>
-						</li>
-						<li class="item">
-							<div class="product-info tugas">
-								<a href="javascript:void(0)" class="product-title">Tugas 2
-									<span class="text-muted pull-right">Deadline: 01-01-2020 | 09:00</span>
-								</a>
-								<span class="product-description">
-									Mapel: Mapel 2 | Guru: Guru2
-								</span>
-								<a href="">
-									<span class="label label-warning pull-right">Belum Dinilai</span>
-								</a>
-							</div>
-						</li>
-						<li class="item">
-							<div class="product-info tugas">
-								<a href="javascript:void(0)" class="product-title">Tugas 3
-									<span class="text-muted pull-right">Deadline: 01-01-2020 | 09:00</span>
-								</a>
-								<span class="product-description">
-									Mapel: Mapel 3 | Guru: Guru3
-								</span>
-								<a href="">
-									<span class="label label-primary pull-right">Sudah Dinilai</span>
-								</a>
-							</div>
-						</li>
-						<li class="item">
-							<div class="product-info tugas">
-								<a href="javascript:void(0)" class="product-title">Tugas 4
-									<span class="text-muted pull-right">Deadline: 01-01-2020 | 09:00</span>
-								</a>
-								<span class="product-description">
-									Mapel: Mapel 3 | Guru: Guru3
-								</span>
-								<a href="">
-									<span class="label label-danger pull-right">Gagal</span>
-								</a>
-							</div>
-						</li>
-					</ul>
-				</div>
-				<div class="box-footer text-center">
-					<a href="javascript:void(0)" class="uppercase">Tampilkan semua tugas...</a>
-				</div>
-			</div>
-			<div class="box box-primary">
-				<div class="box-header with-border">
-					<h3 class="box-title">Materi Terbaru</h3>
-				</div>
-				<div class="box-body">
-					<ul class="products-list product-list-in-box">
-						<li class="item">
-							<div class="product-img">
-								<img class="profile-user-img img-responsive img-circle" src="<?= theme() ?>dist/img/default-50x50.gif" alt="Product Image">
-							</div>
-							<div class="product-info">
-								<a href="javascript:void(0)" class="product-title">Samsung TV
-									<span class="text-muted pull-right">8:03 PM Today</span>
-								</a>
-								<span class="product-description">
-									Samsung 32" 1080p 60Hz LED Smart HDTV.
-								</span>
-								<a href="">
-									<span class="label label-default pull-right">Download</span>
-								</a>
-							</div>
-						</li>
-						<li class="item">
-							<div class="product-img">
-								<img class="profile-user-img img-responsive img-circle" src="<?= theme() ?>dist/img/default-50x50.gif" alt="Product Image">
-							</div>
-							<div class="product-info">
-								<a href="javascript:void(0)" class="product-title">Bicycle
-									<span class="text-muted pull-right">8:03 PM Today</span>
-								</a>
-								<span class="product-description">
-									26" Mongoose Dolomite Men's 7-speed, Navy Blue.
-								</span>
-								<a href="">
-									<span class="label label-default pull-right">Download</span>
-								</a>
-							</div>
-						</li>
-						<li class="item">
-							<div class="product-img">
-								<img class="profile-user-img img-responsive img-circle" src="<?= theme() ?>dist/img/default-50x50.gif" alt="Product Image">
-							</div>
-							<div class="product-info">
-								<a href="javascript:void(0)" class="product-title">Xbox One
-									<span class="text-muted pull-right">8:03 PM Today</span>
-								</a>
-								<span class="product-description">
-									Xbox One Console Bundle with Halo Master Chief Collection.
-								</span>
-								<a href="">
-									<span class="label label-default pull-right">Download</span>
-								</a>
-							</div>
-						</li>
-						<li class="item">
-							<div class="product-img">
-								<img class="profile-user-img img-responsive img-circle" src="<?= theme() ?>dist/img/default-50x50.gif" alt="Product Image">
-							</div>
-							<div class="product-info">
-								<a href="javascript:void(0)" class="product-title">PlayStation 4
-									<span class="text-muted pull-right">8:03 PM Today</span>
-								</a>
-								<span class="product-description">
-									PlayStation 4 500GB Console (PS4)
-								</span>
-								<a href="">
-									<span class="label label-default pull-right">Download</span>
-								</a>
-							</div>
-						</li>
-					</ul>
-				</div>
-				<div class="box-footer text-center">
-					<a href="javascript:void(0)" class="uppercase">Tampilkan semua materi...</a>
-				</div>
-			</div>
-		</div>
-	<?php } ?>
 </div>

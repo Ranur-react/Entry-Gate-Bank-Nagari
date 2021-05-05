@@ -1,0 +1,84 @@
+****************************************************
+
+     Varian Async32 Components
+
+     Varian Software NL (c) 1996-2000
+     All Rights Reserved
+
+****************************************************
+
+Whats new in Version 1.54
+
+General
+-------
+
+- New component TVaDataSource (unit Source)
+
+- New component TVaDataSourceClient (undocumented)
+  General class for datasource/comm links
+
+- New component TVaWaitMessage (unit VaSystem)
+
+- New component TVaBuffer (unit VaBuffer)
+
+- New component TVaServer (unit VaServer)
+
+- New component TVaServerClient (unit VaServer)
+
+TVaComm
+-------
+
+- Added new event OnRx80Full (receiver buffer is 80% full)
+
+- Added new event OnEvent1 (Provider specific event 1)
+
+- Added new event OnEvent2 (Provider specific event 2)
+
+- OnEvent renamed to OnRxFlag (Received certain character)
+
+- Replaced DTREnable to DTRControl flag
+  TVaDTRControl = (dtrDisable, dtrEnable, dtrHandshake);
+  This flag is ignored if FlowControl is set to fcDtrDsr.
+
+- Replaced RTSEnable to RTSControl flag
+  TVaRTSControl = (rtsDisable, rtsEnable, rtsHandshake, rtsToggle);
+  This flag is ignored if FlowControl is set to fcRtsCts.
+
+- Fixed bug in Eventchars component structure.
+
+
+****************************************************
+
+Whats new in Version 1.51
+
+
+- Renamed component from TComm to TVaComm
+  In future releases all components receive the "Va" prefix.
+
+- New general component class TVaSharedComponent (Undocumented),
+  used to link multiple components to the Commport component.
+
+- Added several new units and classes for future releases.
+
+- Updated persistent class TVaCommChars which fixes some bugs  
+  from earlier versions.
+
+- Updated internal thread class with a call to ThreadClosed.
+
+- Added global exception handler to internal thread.
+
+- Added new property "Priority".
+
+- Renamed Read procedure to ReadBuf.
+
+- Renamed Write procedure to WriteBuf.
+
+- Added new function WriteText
+  function WriteText(const s: string): Boolean;
+  
+- Added new function ReadText
+  function ReadText: string;
+
+- And many more changes!
+
+- Added a online windows help file.

@@ -21,34 +21,5 @@ class Welcome extends CI_Controller
 		];
 		$this->template->display('layout/content', $data);
 	}
-	public function walas()
-	{
-		$data = [
-			'title' => 'Dashboard',
-			'page'  => 'Dashboard',
-			'small' => title(),
-			'urls'  => ''
-		];
-		$this->template->display('layout/content', $data);
-	}
-	public function guru()
-	{
-		$data = [
-			'title' => 'Dashboard',
-			'page'  => 'Dashboard',
-			'small' => title(),
-			'urls'  => ''
-		];
-		$this->template->display('layout/content', $data);
-	}
-	public function siswa()
-	{
-		$data = [
-			'title' => 'Dashboard',
-			'page'  => 'Dashboard',
-			'small' => title(),
-			'urls'  => ''
-		];
-		$this->template->display('layout/content', $data);
-	}
+	
 }

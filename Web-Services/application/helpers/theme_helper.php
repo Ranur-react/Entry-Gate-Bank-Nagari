@@ -21,7 +21,7 @@ if (!function_exists('cek_user')) {
 if (!function_exists('title')) {
 	function title()
 	{
-		return $value = 'E-Learning SMAN 2 Lubuk Alung';
+		return $value = "PAGARUYUANG";
 	}
 }
 
@@ -42,11 +42,9 @@ if (!function_exists('user')) {
 		if ($data->level_user == 1) {
 			$user = 'Administrator';
 		} else if ($data->level_user == 2) {
-			$query = $ci->db->where('idguru', $data->kode_user)->get('guru')->row();
-			$user = $query->namaguru;
+			$user = 'Kasir';
 		} else if ($data->level_user == 3) {
-			$query = $ci->db->where('id_siswa', $data->kode_user)->get('siswa')->row();
-			$user = $query->nama_siswa;
+			$user = 'Pimpinan';
 		}
 		return $user;
 	}
@@ -55,19 +53,7 @@ if (!function_exists('user')) {
 if (!function_exists('nisn')) {
 	function nisn()
 	{
-		$ci = &get_instance();
-		$kode = $ci->session->userdata('kode');
-		$data = $ci->db->where('id_user', $kode)->get('user')->row();
-		if ($data->level_user == 1) {
-			$nisn = null;
-		} else if ($data->level_user == 2) {
-			$query = $ci->db->where('idguru', $data->kode_user)->get('guru')->row();
-			$nisn = $query->nipguru;
-		} else if ($data->level_user == 3) {
-			$query = $ci->db->where('id_siswa', $data->kode_user)->get('siswa')->row();
-			$nisn = $query->nisn_siswa;
-		}
-		return $nisn;
+		return '';
 	}
 }
 
@@ -78,11 +64,11 @@ if (!function_exists('role')) {
 		$kode = $ci->session->userdata('kode');
 		$data = $ci->db->where('id_user', $kode)->get('user')->row();
 		if ($data->level_user == 1) {
-			$role = 'Administrator';
+			$role = 'Admin';
 		} else if ($data->level_user == 2) {
-			$role = 'Guru';
+			$role = 'Kasir';
 		} else if ($data->level_user == 3) {
-			$role = 'Siswa';
+			$role = 'Pimpinan';
 		}
 		return $role;
 	}
@@ -108,6 +94,6 @@ if (!function_exists('foto')) {
 if (!function_exists('bergabung')) {
 	function bergabung()
 	{
-		return $value = 'Member since Nov. 2012';
+		return $value = '';
 	}
 }

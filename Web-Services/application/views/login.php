@@ -181,14 +181,14 @@
     <div class="login-box" style="margin-top: 0px">
         <br><br>
         <div class="login-logo">
-            <img src="<?= theme() ?>dist/img/logo.svg" width="120px" height="120px"><br>
-            <a style="font-size: 20pt;" href="<?= site_url() ?>"><b>SMAN 2 </b>Lubuk Alung</a>
+            <img src="<?= theme() ?>images/access.png" style="width: auto;height: 200px"><br>
+            <a style="font-size: 20pt;" href="<?= site_url() ?>"><b>LOGIN </b>Administrator</a>
         </div>
         <div class="login-box-body rdbox">
-            <p class="login-box-msg">Silahkan masukkan akun Anda</p>
+            <p class="login-box-msg">Silahkan Login Untuk Masuk ke Sistem</p>
             <?= form_open('#', ['id' => 'form_login', 'class' => 'login-form']) ?>
             <div class="form-group usernameform has-feedback">
-                <input type="email" name="username" class="form-control rdbox username" placeholder="Email">
+                <input type="text" name="username" class="form-control rdbox username" placeholder="username">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 <span class="error username text-red"></span>
             </div>

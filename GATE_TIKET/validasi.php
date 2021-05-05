@@ -1,12 +1,13 @@
 <?php 
 include 'koneksi.php';
+include 'AES_DENC.php';
 		echo json_encode("_start_");
 
 
 if (isset($_GET['data'])) {
 	# code...
 	$id=$_GET['data'];
-
+	
 	$qry = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM `tb_detail_tiket` WHERE `tb_detail_tiket`.`seri_tiket`='$id' ;"));
 	if (!empty($qry['seri_tiket'])) {
 		// echo "Data : ".$qry['id']." Ada di dalam database";

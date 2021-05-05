@@ -1,0 +1,20 @@
+Simulasi Software Cetak TIKET
+
+1. Pengunjung Membeli Tiket (Operator Start)
+2. Operator Menanyakan Jumlah Tiket yang akan dibeli 
+3. Jika SATU Operator Mencetak TOMBOL FLASH 
+2. Operator Menyakan Jumlah Tiket yang akan dibeli untuk DEWASA (Input Jumlah Tiket Dewasa)
+3. Operator Menyakan Jumlah Tiket yang akan dibeli untuk Anak-Anak (Input Jumlah Tiket Anak-Anak)
+4. Operator Mengeja TOTAL Harga dari semua Tiket
+
+
+Simulasi Hardware Entry
+1. Pengunjung Mengarahkan Tiket ke QR-Code Reader
+2. QR Terbaca 
+3. Value QR dikirim alat ke SERVER (WEB SERVICES)
+4. Value di validasi dengan Database
+5. Jika Data ada pintu Terbuka
+6. Jika Data Tidak Ada PINTU TETAP TERTUTUP dengan INDIKATOR burubah MERAH
+
+
+*SCAN QR saaat Entry tidak boleh saling mendahului*

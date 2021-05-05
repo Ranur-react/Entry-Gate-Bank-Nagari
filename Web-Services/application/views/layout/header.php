@@ -1,7 +1,7 @@
 <header class="main-header">
 	<nav class="navbar navbar-static-top">
 		<div class="navbar-header">
-			<a href="<?= site_url() ?>" class="navbar-brand"><b>E-Learning</b> SMA 2</a>
+			<a href="<?= site_url() ?>" class="navbar-brand"><b>PAGARUYUANG</b> DASBOARD</a>
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
 				<i class="fa fa-bars"></i>
 			</button>
@@ -10,12 +10,7 @@
 
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
-				<li class="dropdown messages-menu">
-					<a href="#" style="padding-top: 5px; padding-bottom: 0px; text-align: right">
-						Tahun Ajaran : [ <?= tahun_aktif() ?> ]<br>
-						<?= (level() == '1' or level() == '2') ? role() : 'Kelas:' ?>
-					</a>
-				</li>
+
 				<li class="dropdown messages-menu" style="border-left: 1px solid #0aabcc">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						<i class="fa fa-bell-o"></i>
