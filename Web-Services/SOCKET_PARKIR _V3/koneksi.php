@@ -19,7 +19,8 @@
 	socket_connect($connfig['socket'], $connfig['host'],$connfig['port']);
 
 	//Koneksi Kamera
-	$CameraConfig['ip']='192.168.1.101';
-	$CameraConfig['port']=5000;
+	$CameraConfig['ip']='192.168.1.64';
+	$CameraConfig['username']='admin';
+	$CameraConfig['password']='Hikvision!!';
 	$CameraConfig['folder']='capture';
  ?>

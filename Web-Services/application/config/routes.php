@@ -12,6 +12,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['tiket'] = 'gate/Tiket';
 $route['parkir'] = 'gate/Parkir';
 $route['EntryMobil'] = 'socket/entry';
+$route['EntryMotor'] = 'socket/entryMotor';
 
 
 

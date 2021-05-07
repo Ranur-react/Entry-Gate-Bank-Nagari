@@ -42,7 +42,58 @@
 	}
 </style>
 <script type="text/javascript">
+	var succesOnline=`
+						              <div class="alert alert-success alert-dismissible">
+						                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						                <h4><i class="icon fa fa-check-circle-o"></i> Online</h4>
+						                Gerbang Parkir  berhasil diaktifkan 
+						              </div>
+										<div class="col-md-12">
+											<div class="box box-solid">
+												<div class="box-header with-border">
+												  <i class="fa  fa-info-circle"></i>
+												  <h3 class="box-title">INFORMASI</h3>
+												</div>
+												<div class="box-body">
+												  <ol>
+												    <li>Pastikan Sistem selalu dalam keadaan Online <i class="fa fa-check-circle-o"></i></li>
+												    <li>Jangan Menutup Browser Setup Sistem</li>
+												  </ol>
+												</div>
+											</div>
+										</div>
+	`;
+		var GagalOnline=`
+						              <div class="alert alert-warning alert-dismissible">
+						                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						                <h4><i class="icon fa fa-circle-o"></i> Connetions Filed </h4>
+						                Gerbang Parkir GAGAL aktif
+						              </div>
+										<div class="col-md-12">
+											<div class="box box-solid">
+												<div class="box-header with-border">
+												  <i class="fa fa-info"></i>
+												  <h3 class="box-title">INFORMASI</h3>
+												</div>
+												<div class="box-body">
+												  <ol>
+												    <li>Tekan Tombol <i class="fa fa-power-off"> </i> untuk tetap berusaha Online </li>
+												    <li>Mungkin terjadi kendala saat kendaraan entry</li>
+												    	<ul>
+												             <li>Gunakan Remote Gate Device denga menekan tombol <i class="fa fa-arrow-circle-up"></i>  untuk membuka pintu  </li>
+												             <li>Gunakan Remote Gate Device denga menekan tombol <i class="fa fa-arrow-circle-down"></i>  untuk Menutup pintu  </li>
+												    	</ul>
+												  </ol>
+												</div>
+											</div>
+										</div>
+	`;
+
+
+
 	            $(document).on('click', '.btnParkirMobil', function(e) {
+	            	var buton=$('.btnParkirMobil');
+	            	var Informasi=$('.Informasi');
                 $.ajax({
                     url: '<?= site_url('EntryMobil')  ?>',
                     type: "post",
@@ -50,19 +101,54 @@
                     cache: false,
                     beforeSend: function(response) {
 						// alert("Before");
-                        $('.btnParkirMobil').attr('disabled', 'disabled');
-                            $('.btnParkirMobil').removeClass('btn-danger');
-                            $('.btnParkirMobil').addClass('btn-success');
-                        $('.btnParkirMobil').html('<i class="fa fa-spin fa-spinner"></i> Online');
+                        buton.attr('disabled', 'disabled');
+                            buton.removeClass('btn-danger');
+                            buton.addClass('btn-success');
+                        buton.html('<i class="fa fa-spin fa-spinner"></i> Online');
                         console.log(response)
-
+                        Informasi.html(succesOnline);
                     },
                     success: function(response) {
-  						alert("Succes");
   						console.log(response);
+                        Informasi.html(GagalOnline);
                     },
                     complete: function() {
-                      alert("Finised");
+                        Informasi.html(GagalOnline);
+        	  						buton.removeAttr('disabled');
+  						buton.removeClass('btn-success');
+  						buton.addClass('btn-danger');
+                        buton.html('<i class="fa fa-power-off"></i>');
+                    }
+                });
+            });	
+
+	            $(document).on('click', '.btnParkirMotor', function(e) {
+	            	var buton=$('.btnParkirMotor');
+	            	var Informasi=$('.InformasiMotor');
+                $.ajax({
+                    url: '<?= site_url('EntryMotor')  ?>',
+                    type: "post",
+                    dataType: "json",
+                    cache: false,
+                    beforeSend: function(response) {
+						// alert("Before");
+                        buton.attr('disabled', 'disabled');
+                            buton.removeClass('btn-danger');
+                            buton.addClass('btn-success');
+                        buton.html('<i class="fa fa-spin fa-spinner"></i> Online');
+                        console.log(response)
+                        Informasi.html(succesOnline);
+                    },
+                    success: function(response) {
+  						console.log(response);
+                        Informasi.html(GagalOnline);
+                    },
+                    complete: function() {
+                        Informasi.html(GagalOnline);
+        	  						buton.removeAttr('disabled');
+  						buton.removeClass('btn-success');
+  						buton.addClass('btn-danger');
+                        buton.html('<i class="fa fa-power-off"></i>');
                     }
                 });
             });	
@@ -96,36 +182,58 @@
 			<div class="box-body " >
 				<div class="row">
 					<div class="col-md-6">
-						<div class="col-md-4"></div>
-						<div class="col-md-4">
-							
-						</div>
-						<div class="col-md-4">
+						<div class="col-md-2"></div>
+						<div class="col-md-8">
+							<div class="row">
+								PARKIR MOBIL
+							</div>
 							<div class="row">
 								<button style="height: 200px;width: 200px;font-size: 32px;border-radius: 50%" class="btn btn-danger btnParkirMobil">
 									<i class="fa  fa-power-off "></i>
 								</button>
 							</div>
+							<br>
 							<div class="row">
-								Parkir Mobil
+								<div class="Informasi">
+								</div>
+
 							</div>
+						</div>
+						<div class="col-md-2">
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="col-md-4">
+							<div class="row">PARKIR MOTOR</div>
 							<div class="row">
-								<button style="height: 200px;width: 200px;font-size: 32px;border-radius: 50%" class="btn btn-danger">
+								<button style="height: 200px;width: 200px;font-size: 32px;border-radius: 50%" class="btn btn-danger btnParkirMotor">
 									<i class="fa  fa-power-off "></i>
 								</button>
 							</div>
 							<div class="row">
-								Parkir Mobil
+								<div class="InformasiMotor">
+								</div>
 							</div>
 						</div>
 						<div class="col-md-4">
 							
 						</div>
 						<div class="col-md-4">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="box box-solid">
+							<div class="box-header with-border">
+							  <i class="fa  fa-user"></i>
+							  <h3 class="box-title">Hubungi : </h3>
+							</div>
+							<div class="box-body">
+							    	<br>&nbsp;&nbsp;Ranur - Technical Support 0831-8264-7716 (wa)
+							    	<br>&nbsp;&nbsp;Beno  - Customer Support 0823-8386-7799 (wa) 
+							    	<br>&nbsp;&nbsp;PT. Indonusa Sofmedi Technology 
+							</div>
 						</div>
 					</div>
 				</div>
