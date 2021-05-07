@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="<?= theme() ?>plugins/span_but/style.css">
+<script src="<?= theme() ?>plugins/span_but/animated.js"></script>
+
+
 <style>
 	.alert-dark {
 		border-color: transparent;
@@ -37,6 +41,32 @@
 		background: #eb613e;
 	}
 </style>
+<script type="text/javascript">
+	            $(document).on('click', '.btnParkirMobil', function(e) {
+                $.ajax({
+                    url: '<?= site_url('EntryMobil')  ?>',
+                    type: "post",
+                    dataType: "json",
+                    cache: false,
+                    beforeSend: function(response) {
+						// alert("Before");
+                        $('.btnParkirMobil').attr('disabled', 'disabled');
+                            $('.btnParkirMobil').removeClass('btn-danger');
+                            $('.btnParkirMobil').addClass('btn-success');
+                        $('.btnParkirMobil').html('<i class="fa fa-spin fa-spinner"></i> Online');
+                        console.log(response)
+
+                    },
+                    success: function(response) {
+  						alert("Succes");
+  						console.log(response);
+                    },
+                    complete: function() {
+                      alert("Finised");
+                    }
+                });
+            });	
+</script>
 <?php $urls = $this->uri->segment(2) ?>
 <div class="row">
 	<div class="col-md-12">
@@ -51,114 +81,54 @@
 				<a href="<?= site_url('welcome/siswa') ?>" class="btn btn-danger">Siswa</a>
 			</div>
 		</div> -->
-		<div class="alert alert-success alert-dark m-b-1">
+		<div class="alert alert-warning alert-dark m-b-1">
 			<button type="button" class="close" data-dismiss="alert">×</button>
-			<strong>Hei <?= user() ?></strong>, selamat datang kembali.
+			<strong>Hei <?= user() ?></strong>, Selamat datang , Jangan lupa Aktifkan Gerbang Parkir agar pengunjung dapat memasuki area Parkir dengan semestinya	
 		</div>
 	</div>
 
-	<div class="col-md-4">
+	<div class="col-md-12">
 		<div class="box box-success">
 			<div class="box-header">
-				<i class="fa fa-comments-o"></i>
-				<h3 class="box-title">Pesan</h3>
+				<i class="fa fa-gear"></i>
+				<h3 class="box-title">Setup Sistem</h3>
 			</div>
-			<div class="box-body chat" id="chat-box">
-				<div class="item">
-					<img src="<?= theme() ?>dist/img/user4-128x128.jpg" alt="user image" class="online">
-
-					<p class="message">
-						<a href="#" class="name">
-							<small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
-							Mike Doe
-						</a>
-						I would like to meet you to discuss the latest news...
-					</p>
+			<div class="box-body " >
+				<div class="row">
+					<div class="col-md-6">
+						<div class="col-md-4"></div>
+						<div class="col-md-4">
+							
+						</div>
+						<div class="col-md-4">
+							<div class="row">
+								<button style="height: 200px;width: 200px;font-size: 32px;border-radius: 50%" class="btn btn-danger btnParkirMobil">
+									<i class="fa  fa-power-off "></i>
+								</button>
+							</div>
+							<div class="row">
+								Parkir Mobil
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="col-md-4">
+							<div class="row">
+								<button style="height: 200px;width: 200px;font-size: 32px;border-radius: 50%" class="btn btn-danger">
+									<i class="fa  fa-power-off "></i>
+								</button>
+							</div>
+							<div class="row">
+								Parkir Mobil
+							</div>
+						</div>
+						<div class="col-md-4">
+							
+						</div>
+						<div class="col-md-4">
+						</div>
+					</div>
 				</div>
-				<div class="item">
-					<img src="<?= theme() ?>dist/img/user3-128x128.jpg" alt="user image" class="offline">
-					<p class="message">
-						<a href="#" class="name">
-							<small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
-		 					Alexander Pierce
-						</a>
-						I would like to meet you to discuss the latest news..
-					</p>
-				</div>
-				<div class="item">
-					<img src="<?= theme() ?>dist/img/user2-160x160.jpg" alt="user image" class="offline">
-					<p class="message">
-						<a href="#" class="name">
-							<small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
-							Susan Doe
-						</a>
-						I would like to meet you to discuss the latest news...
-					</p>
-				</div>
-			</div>
-			<div class="box-footer text-center">
-				<a href="javascript:void(0)" class="uppercase">Tampilkan semua pesan...</a>
-			</div>
-		</div>
-		<div class="box box-primary">
-			<div class="box-header with-border">
-				<h3 class="box-title">Quis dan Ujian</h3>
-			</div>
-			<div class="box-body">
-				<ul class="products-list product-list-in-box">
-					<li class="item">
-						<div class="product-info tugas">
-							<a href="javascript:void(0)" class="product-title">Mapel 1
-								<span class="text-muted pull-right">Tgl Ujian: 01-01-2020</span>
-							</a>
-							<span class="product-description">Kelas: X | Guru: Guru 1
-								<span class="label label-success pull-right">Belum Ujian</span>
-							</span>
-							<a href="">
-							</a>
-						</div>
-					</li>
-					<li class="item">
-						<div class="product-info tugas">
-							<a href="javascript:void(0)" class="product-title">Mapel 2
-								<span class="text-muted pull-right">Tgl Ujian: 01-01-2020</span>
-							</a>
-							<span class="product-description">Kelas: X | Guru: Guru 2
-								<span class="label label-warning pull-right">Belum Dinilai</span>
-							</span>
-							<a href="">
-							</a>
-						</div>
-					</li>
-					<li class="item">
-						<div class="product-info tugas">
-							<a href="javascript:void(0)" class="product-title">Mapel 3
-								<span class="text-muted pull-right">Tgl Ujian: 01-01-2020</span>
-							</a>
-							<span class="product-description">Kelas: X | Guru: Guru 3
-								<span class="label label-primary pull-right">Sudah Dinilai</span>
-							</span>
-							<a href="">
-							</a>
-						</div>
-					</li>
-					<li class="item">
-						<div class="product-info tugas">
-							<a href="javascript:void(0)" class="product-title">Mapel 4
-								<span class="text-muted pull-right">Tgl Ujian: 01-01-2020</span>
-							</a>
-							<span class="product-description">Kelas: X | Guru: Guru 4
-								<span class="label label-danger pull-right">Tidak Ikut Ujian</span>
-							</span>
-							<a href="">
-							</a>
-						</div>
-					</li>
-				</ul>
-			</div>
-			<div class="box-footer text-center">
-				<a href="javascript:void(0)" class="uppercase">Tampilkan semua tugas...</a>
-			</div>
 		</div>
 	</div>
 </div>
