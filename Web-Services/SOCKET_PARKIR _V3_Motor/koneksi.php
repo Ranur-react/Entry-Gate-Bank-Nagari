@@ -13,13 +13,13 @@
 
 
 	//Koneksi Hardware
-	$connfig['host']='192.168.1.101';
+	$connfig['host']='192.168.1.102';
 	$connfig['port']=5000;
 	$connfig['socket']=socket_create(AF_INET, SOCK_STREAM, 0);
 	socket_connect($connfig['socket'], $connfig['host'],$connfig['port']);
 
 	//Koneksi Kamera
-	$CameraConfig['ip']='192.168.1.61';
+	$CameraConfig['ip']='192.168.1.62';
 	$CameraConfig['username']='admin';
 	$CameraConfig['password']='Hikvision!!';
 	$CameraConfig['folder']='capture';

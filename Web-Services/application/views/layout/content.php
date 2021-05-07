@@ -42,6 +42,13 @@
 	}
 </style>
 <script type="text/javascript">
+	$( document ).ready(function() {
+	setTimeout(()=>{
+	OnlineMobil();
+	OnlineMotor();
+	},30000);
+    // console.log( "ready!" );
+});
 	var succesOnline=`
 						              <div class="alert alert-success alert-dismissible">
 						                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -67,7 +74,7 @@
 						              <div class="alert alert-warning alert-dismissible">
 						                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 						                <h4><i class="icon fa fa-circle-o"></i> Connetions Filed </h4>
-						                Gerbang Parkir GAGAL aktif
+						                Gerbang Parkir GAGAL aktif periksa koneksi dengan melakukan PING pada IP Controller perangkat
 						              </div>
 										<div class="col-md-12">
 											<div class="box box-solid">
@@ -92,9 +99,13 @@
 
 
 	            $(document).on('click', '.btnParkirMobil', function(e) {
-	            	var buton=$('.btnParkirMobil');
-	            	var Informasi=$('.Informasi');
-                $.ajax({
+					OnlineMobil();
+            });	
+
+function OnlineMobil() {
+	var buton=$('.btnParkirMobil');
+	var Informasi=$('.Informasi');
+	               request= $.ajax({
                     url: '<?= site_url('EntryMobil')  ?>',
                     type: "post",
                     dataType: "json",
@@ -107,6 +118,7 @@
                         buton.html('<i class="fa fa-spin fa-spinner"></i> Online');
                         console.log(response)
                         Informasi.html(succesOnline);
+
                     },
                     success: function(response) {
   						console.log(response);
@@ -114,15 +126,18 @@
                     },
                     complete: function() {
                         Informasi.html(GagalOnline);
-        	  						buton.removeAttr('disabled');
+        	  						// buton.removeAttr('disabled');
   						buton.removeClass('btn-success');
   						buton.addClass('btn-danger');
                         buton.html('<i class="fa fa-power-off"></i>');
                     }
                 });
-            });	
+}
 
 	            $(document).on('click', '.btnParkirMotor', function(e) {
+	            	OnlineMotor();
+            });	
+	            function OnlineMotor() {
 	            	var buton=$('.btnParkirMotor');
 	            	var Informasi=$('.InformasiMotor');
                 $.ajax({
@@ -151,7 +166,7 @@
                         buton.html('<i class="fa fa-power-off"></i>');
                     }
                 });
-            });	
+	            }
 </script>
 <?php $urls = $this->uri->segment(2) ?>
 <div class="row">
