@@ -27,11 +27,13 @@
         },
         success: function(response) {
 			var roda="";
+				$('.jenis').empty();
 			$.map( response.roda, function( val, i ) {
-			console.log("data: "+val.id_level+"["+i+"]");
-			  roda+="<options value="+val.id_level+" >"+val.id_level+"</options>";
+				var newOption = new Option(val.nama, val.id_level, false, false);
+				$('.jenis').append(newOption)
+				$('#input-plat').focus();
 			});
-			// $('.jenis').html()
+			console.log("Roda: "+roda)
         },
         complete: function() {
         	// alert("Complete")
@@ -108,24 +110,8 @@
                   <th>STREAMING</th>
                   <th>Detail Masuk</th>
                 </tr>
-                <tr style="font-size: 18px">
-                  <td>
-                		<a class="StreamA" target="blank" href="http://192.168.1.64/ISAPI/Streaming/channels/101/picture">
-	                  		<img class="StreamIMG" style="  max-width: 50%;  max-height: auto;border-radius: 20px" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png">
-                  		</a>
-                  </td>
-                  <td>
-                  	<div  class="imagesStream">
-                		<a class="StreamA" target="blank" href="http://192.168.1.64/ISAPI/Streaming/channels/101/picture">
-	                  		<img class="StreamIMG" style="  max-width: 50%;  max-height: auto;border-radius: 20px" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png">
-                  		</a>
-                  	</div>
-	              </td>
-                  <td>
-                  	Tanggal
-                  	Jam
-                  </td>
-                </tr>
+						<div class="dynamicCaptureiew"></div>
+						
                 <tr style="font-size: 24px">
                 	<td colspan="2">
                 		<div class="form-group">

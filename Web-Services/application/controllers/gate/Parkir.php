@@ -29,7 +29,8 @@ class Parkir extends CI_Controller
 	{
         $kode = trim($this->input->post('kode'));
         $check = $this->Mentry->check_karcis($kode);
-
+        $strurl= $this->Mconfig->check_url($kode);
+        $this->Viewcapture($kode,$strurl);
         if ($check->num_rows() != 0) {
             $json['status'] = TRUE;
             $json['data']=$check->row_array();
@@ -49,6 +50,12 @@ class Parkir extends CI_Controller
 		}
 		// return $qry->result_array();
 		return $qry;
+	}
+	public function Viewcapture($kode,$urlstream)
+	{
+		$data['id_capture'] = $kode;
+		$data['urlstream'] = $urlstream;
+		$this->load->view('gate/parkir/capture',$data);
 	}
 	
 }
