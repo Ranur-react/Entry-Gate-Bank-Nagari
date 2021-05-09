@@ -5,3 +5,4 @@ RewriteRule .* index.php/$0 [PT,L]
 # IndexIgnore *.png *.zip *.jpg *.gif *.doc *.ico *.xlsx *.js *.md *.txt *.json *.css
 Options -Indexes
 IndexIgnore *
+php_value max_execution_time 86400

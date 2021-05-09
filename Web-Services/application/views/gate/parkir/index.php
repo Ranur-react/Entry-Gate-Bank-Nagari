@@ -26,11 +26,12 @@
 			// console.log(response);
         },
         success: function(response) {
+			var roda="";
 			$.map( response.roda, function( val, i ) {
 			console.log("data: "+val.id_level+"["+i+"]");
-			  // Do something
+			  roda+="<options value="+val.id_level+" >"+val.id_level+"</options>";
 			});
-			// $('.jenis').html('<options >'+response.roda+'</options>')
+			// $('.jenis').html()
         },
         complete: function() {
         	// alert("Complete")

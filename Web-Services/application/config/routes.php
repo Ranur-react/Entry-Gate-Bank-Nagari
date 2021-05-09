@@ -14,7 +14,7 @@ $route['parkir'] = 'gate/Parkir';
 $route['MobilStreming'] = 'gate/Parkir/MobilStreming';
 $route['cekkarcis'] = 'gate/Parkir/cekkarcis';
 $route['EntryMobil'] = 'socket/entry';
-$route['EntryMotor'] = 'socket/entryMotor';
+$route['EntryMotor'] = 'socket/EntryMotor';
 
 
 

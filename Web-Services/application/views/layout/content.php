@@ -44,8 +44,8 @@
 <script type="text/javascript">
 	$( document ).ready(function() {
 	setTimeout(()=>{
-	OnlineMobil();
-	OnlineMotor();
+	// OnlineMobil();
+	// OnlineMotor();
 	},30000);
     // console.log( "ready!" );
 });
@@ -126,7 +126,7 @@ function OnlineMobil() {
                     },
                     complete: function() {
                         Informasi.html(GagalOnline);
-        	  						// buton.removeAttr('disabled');
+        	  						buton.removeAttr('disabled');
   						buton.removeClass('btn-success');
   						buton.addClass('btn-danger');
                         buton.html('<i class="fa fa-power-off"></i>');
@@ -145,7 +145,7 @@ function OnlineMobil() {
                     type: "post",
                     dataType: "json",
                     cache: false,
-                    beforeSend: function(response) {
+                   beforeSend: function(response) {
 						// alert("Before");
                         buton.attr('disabled', 'disabled');
                             buton.removeClass('btn-danger');
@@ -153,6 +153,7 @@ function OnlineMobil() {
                         buton.html('<i class="fa fa-spin fa-spinner"></i> Online');
                         console.log(response)
                         Informasi.html(succesOnline);
+
                     },
                     success: function(response) {
   						console.log(response);

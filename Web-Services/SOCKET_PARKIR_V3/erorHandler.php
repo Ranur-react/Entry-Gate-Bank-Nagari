@@ -45,7 +45,7 @@ function myErrorHandler($errno, $errstr, $errfile, $errline)
     default:
         echo "Reload . . . ";
                 mysqli_query($conn, "INSERT INTO `db_banknagari`.`tb_log` (`id`, `log`, `jenis_log`, `gate_id`,`date`) VALUES (NULL, 'Eror Saat Membaca', 'erorr', '01',now());");
-        header("location: index.php");
+        header("location: index.sphp");
         break;
     }
 
