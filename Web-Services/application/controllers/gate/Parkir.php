@@ -25,5 +25,30 @@ class Parkir extends CI_Controller
 		];
 		$this->template->display('gate/parkir/index', $data);
 	}
+	public function cekkarcis()
+	{
+        $kode = trim($this->input->post('kode'));
+        $check = $this->Mentry->check_karcis($kode);
+
+        if ($check->num_rows() != 0) {
+            $json['status'] = TRUE;
+            $json['data']=$check->row_array();
+            $json['roda']=$this->level_kendaraan($json['data']['gate_id'])->result_array();;
+
+        } else {
+            $json['status'] = FALSE;
+        }
+        echo json_encode($json);	
+	}
+	public function level_kendaraan($id)
+	{
+		if ($id != '01') {
+			$qry=$this->db->query("SELECT*FROM `tb_level_kendaraan` WHERE `id_gate` NOT IN (SELECT	id_gate FROM `tb_level_kendaraan` WHERE id_gate='01');");
+		}else{
+			$qry=$this->db->query("SELECT*FROM `tb_level_kendaraan` WHERE `id_gate` NOT IN (SELECT	id_gate FROM `tb_level_kendaraan` WHERE id_gate='02');");
+		}
+		// return $qry->result_array();
+		return $qry;
+	}
 	
 }

@@ -24,28 +24,28 @@ function myErrorHandler($errno, $errstr, $errfile, $errline)
         $eror.= ", PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />\n";
         $eror.= "Aborting...<br />\n";
         mysqli_query($conn, "INSERT INTO `db_banknagari`.`tb_log` (`id`, `log`, `jenis_log`, `gate_id`,`date`) VALUES (NULL, '$eror', 'erorr', '01',now());");
-        header("location: http://localhost/banknagari/Entry-Gate-Bank-Nagari/SOCKET_PARKIR%20_V3/Entry.php");
+        header("location: index.php");
         
         exit(1);
 
     case E_USER_WARNING:
         $eror= "<b>My WARNING</b> [$errno] $errstr<br />\n";
         mysqli_query($conn, "INSERT INTO `db_banknagari`.`tb_log` (`id`, `log`, `jenis_log`, `gate_id`,`date`) VALUES (NULL, '$eror', 'erorr', '01',now());");
-        header("location: http://localhost/banknagari/Entry-Gate-Bank-Nagari/SOCKET_PARKIR%20_V3/Entry.php");
+        header("location: index.php");
 
         break;
 
     case E_USER_NOTICE:
         $eror="<b>My NOTICE</b> [$errno] $errstr<br />\n";
         mysqli_query($conn, "INSERT INTO `db_banknagari`.`tb_log` (`id`, `log`, `jenis_log`, `gate_id`,`date`) VALUES (NULL, '$eror', 'erorr', '01',now());");
-        header("location: http://localhost/banknagari/Entry-Gate-Bank-Nagari/SOCKET_PARKIR%20_V3/Entry.php");
+        header("location: index.php");
 
         break;
 
     default:
         echo "Reload . . . ";
                 mysqli_query($conn, "INSERT INTO `db_banknagari`.`tb_log` (`id`, `log`, `jenis_log`, `gate_id`,`date`) VALUES (NULL, 'Eror Saat Membaca', 'erorr', '01',now());");
-        header("location: http://localhost/banknagari/Entry-Gate-Bank-Nagari/SOCKET_PARKIR%20_V3/Entry.php");
+        header("location: index.php");
         break;
     }
 

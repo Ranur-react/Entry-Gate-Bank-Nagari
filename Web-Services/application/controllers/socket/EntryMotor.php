@@ -13,7 +13,7 @@ class Entry extends CI_Controller
 	}
 	public function index()
 	{
-		redirect(base_url().'/SOCKET_PARKIR _V3_Motor/');
+		redirect(base_url().'/SOCKET_PARKIR_V3_Motor/index.php');
 	}
 	
 }

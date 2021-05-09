@@ -15,7 +15,7 @@ class Entry extends CI_Controller
 	{
 		 // $d['data']="bisa";
 		// echo json_encode($d) ;
-redirect(base_url().'/SOCKET_PARKIR _V3/');
+redirect(base_url().'/SOCKET_PARKIR_V3/index.php');
 	}
 	
 }

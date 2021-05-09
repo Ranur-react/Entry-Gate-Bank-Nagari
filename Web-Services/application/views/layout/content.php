@@ -106,7 +106,7 @@ function OnlineMobil() {
 	var buton=$('.btnParkirMobil');
 	var Informasi=$('.Informasi');
 	               request= $.ajax({
-                    url: '<?= site_url('EntryMobil')  ?>',
+                    url: '<?= site_url('EntryMobil') ?>',
                     type: "post",
                     dataType: "json",
                     cache: false,
@@ -247,7 +247,7 @@ function OnlineMobil() {
 							<div class="box-body">
 							    	<br>&nbsp;&nbsp;Ranur - Technical Support 0831-8264-7716 (wa)
 							    	<br>&nbsp;&nbsp;Beno  - Customer Support 0823-8386-7799 (wa) 
-							    	<br>&nbsp;&nbsp;PT. Indonusa Sofmedi Technology 
+							    	<br>&nbsp;&nbsp; Integra Solutions &copy; 
 							</div>
 						</div>
 					</div>
