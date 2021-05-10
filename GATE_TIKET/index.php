@@ -7,7 +7,12 @@ include 'dateformat.php';
 
 		if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 			$chiper=$_POST['data'];
-				// echo $chipperteks;
+				
+		}else{
+			$chiper=$_GET['data'];
+			// echo "Nulll";
+		}
+		// echo $chipperteks;
 				 $chipperteks=str_replace(" ","+",$chiper);
 				$plainteks= decrypt($chipperteks,$denc_Key);
 				$data=parsing_react_api($plainteks);
@@ -32,7 +37,4 @@ include 'dateformat.php';
 								echo "Kadaluarsa ";	
 							 }
 						}
-		}else{
-			echo "Nulll";
-		}
  ?>
