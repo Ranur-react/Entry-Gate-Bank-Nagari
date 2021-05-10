@@ -16,7 +16,15 @@ function decrypt($data, $key) {
     //seerialpayment---parsing
      $rest=substr($rest, $data['levelIndex']+1);
      $data['nomorbuktiValue']=$rest;
+     if (strlen($data['dateValue'])>14) {
+        echo "Encripsi Tiket Bermasalah !!";
+         die;
+     }else if(strlen($data['dateValue'])<14){
+        echo "Encripsi Gagal !! periksa Key AES ECB atau Periksa Krakter Yang Kamu Kirimkan";
+     }else{
+
      return $data;
+     }
 }
 
 
