@@ -3,12 +3,12 @@
 
  function dateFormat($value)
 {
-	$ymd = DateTime::createFromFormat('dmYhis', $value)->format('Y-m-d');
+	$ymd = DateTime::createFromFormat('dmYHis', $value)->format('Y-m-d');
 	return $ymd;
 }
  function timeFormat($value)
 {
-	$ymd = DateTime::createFromFormat('dmYhis', $value)->format('H:i:s');
+	$ymd = DateTime::createFromFormat('dmYHis', $value)->format('H:i:s');
 	return $ymd;
 }
  function dateEqualas($d)
