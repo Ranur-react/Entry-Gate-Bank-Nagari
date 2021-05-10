@@ -13,6 +13,25 @@
 			input_karcis();
 
 		}
+		function viewCaptureLoad(kode,urlstream) {
+			return `               
+                  <td>
+                		<a class="StreamA" target="blank" href="http://admin:Hikvision!!@`+urlstream+`/ISAPI/Streaming/channels/101/picture">
+	                  		<img class="StreamIMG" style="  max-width: 50%;  max-height: auto;border-radius: 20px" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png">
+                  		</a>
+                  </td>
+                  <td>
+                  	<div  class="imagesStream">
+                		<a class="StreamA" target="blank" href="http://admin:Hikvision!!@`+urlstream+`/ISAPI/Streaming/channels/101/picture">
+	                  		<img class="StreamIMG" style="  max-width: 50%;  max-height: auto;border-radius: 20px" src="http://admin:Hikvision!!@`+urlstream+`/ISAPI/Streaming/channels/101/picture">
+                  		</a>
+                  	</div>
+	              </td>
+                  <td>
+                  	Tanggal
+                  	Jam
+                  </td>`;
+		}
 
     function input_karcis() {
     	var data="&kode="+$('#input-karcis').val();
@@ -26,14 +45,17 @@
 			// console.log(response);
         },
         success: function(response) {
-			var roda="";
-				$('.jenis').empty();
+        	$('.dynamicCaptureiew').html("");
+        	console.log(response);
+					$('.dynamicCaptureiew').html(viewCaptureLoad(response.kode,response.urlStream));
+					$('.jenis').empty();
+					var roda="";
 			$.map( response.roda, function( val, i ) {
 				var newOption = new Option(val.nama, val.id_level, false, false);
 				$('.jenis').append(newOption)
 				$('#input-plat').focus();
 			});
-			console.log("Roda: "+roda)
+			// console.log("Roda: "+roda)
         },
         complete: function() {
         	// alert("Complete")
@@ -110,7 +132,24 @@
                   <th>STREAMING</th>
                   <th>Detail Masuk</th>
                 </tr>
-						<div class="dynamicCaptureiew"></div>
+			                <tr class="dynamicCaptureiew" style="font-size: 18px">
+			                  <td>
+			                		<a class="StreamA" target="blank" href="http://192.168.1.64/ISAPI/Streaming/channels/101/picture">
+				                  		<img class="StreamIMG" style="  max-width: 50%;  max-height: auto;border-radius: 20px" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png">
+			                  		</a>
+			                  </td>
+			                  <td>
+			                  	<div  class="imagesStream">
+			                		<a class="StreamA" target="blank" href="http://192.168.1.64/ISAPI/Streaming/channels/101/picture">
+				                  		<img class="StreamIMG" style="  max-width: 50%;  max-height: auto;border-radius: 20px" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png">
+			                  		</a>
+			                  	</div>
+				              </td>
+			                  <td>
+			                  	Tanggal
+			                  	Jam
+			                  </td>
+			                </tr>
 						
                 <tr style="font-size: 24px">
                 	<td colspan="2">

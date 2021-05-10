@@ -11,7 +11,16 @@ class Auth extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('status_login') == TRUE) {
-            redirect('welcome');
+            if ($this->session->userdata('levelUser')== 1) {
+            
+                # code...
+                redirect('welcome');
+            }else if ($this->session->userdata('levelUser')== 3) {
+                redirect('Laporan');
+            } 
+            else{
+                redirect('kasir');
+            }
         } else {
             $this->load->view('login');
         }
@@ -60,6 +69,7 @@ class Auth extends CI_Controller
             if ($this->session->userdata('masuk') == TRUE) {
                 $this->session->set_userdata('status_login', TRUE);
                 $this->session->set_userdata('kode', $value['id_user']);
+                $this->session->set_userdata('levelUser', $value['level_user']);
                 $this->session->set_flashdata('pesan', sukses('Berhasli Login.'));
             } else {
                 $this->session->session_destroy();

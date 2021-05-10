@@ -12,6 +12,7 @@ class Parkir extends CI_Controller
 			redirect('logout');
 		$this->load->model('gate/Mentry');
 		$this->load->model('gate/Mexit');
+		$this->load->model('gate/Mconfig');
 	}
 	public function index()
 	{
@@ -29,11 +30,14 @@ class Parkir extends CI_Controller
 	{
         $kode = trim($this->input->post('kode'));
         $check = $this->Mentry->check_karcis($kode);
-        $strurl= $this->Mconfig->check_url($kode);
-        $this->Viewcapture($kode,$strurl);
+        $checkdata=$check->row_array();
+        $strurl= $this->Mconfig->check_urlStreaming($checkdata['gate_id']);
+        
         if ($check->num_rows() != 0) {
             $json['status'] = TRUE;
-            $json['data']=$check->row_array();
+            $json['urlStream'] = $strurl['value'];
+            $json['kode'] = $kode;
+            $json['data']=$checkdata;
             $json['roda']=$this->level_kendaraan($json['data']['gate_id'])->result_array();;
 
         } else {
@@ -54,8 +58,8 @@ class Parkir extends CI_Controller
 	public function Viewcapture($kode,$urlstream)
 	{
 		$data['id_capture'] = $kode;
-		$data['urlstream'] = $urlstream;
-		$this->load->view('gate/parkir/capture',$data);
+		$data['urlstream'] = $urlstream['value'];
+		return $this->load->view('gate/parkir/capture',$data);
 	}
 	
 }

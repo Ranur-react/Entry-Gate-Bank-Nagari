@@ -17,6 +17,9 @@ $route['EntryMobil'] = 'socket/entry';
 $route['EntryMotor'] = 'socket/EntryMotor';
 
 
+$route['kasir'] = 'gate/Parkir';
+$route['Laporan'] = 'gate/Parkir';
+
 
 $route['logout'] = 'auth/logout';
 $route['login'] = 'auth/validate';
