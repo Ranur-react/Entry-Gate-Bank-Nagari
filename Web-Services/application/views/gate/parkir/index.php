@@ -13,11 +13,11 @@
 			input_karcis();
 
 		}
-		function viewCaptureLoad(kode,urlstream) {
+		function viewCaptureLoad(kode,urlstream,folderImages) {
 			return `               
                   <td>
-                		<a class="StreamA" target="blank" href="http://admin:Hikvision!!@`+urlstream+`/ISAPI/Streaming/channels/101/picture">
-	                  		<img class="StreamIMG" style="  max-width: 50%;  max-height: auto;border-radius: 20px" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png">
+                		<a class="StreamA" target="blank" href="<?php echo base_url()?>`+folderImages+`/capture/`+kode+`/sc-1.jpg">
+	                  		<img class="StreamIMG" style="  max-width: 50%;  max-height: auto;border-radius: 20px" src="<?php echo base_url()?>`+folderImages+`/capture/`+kode+`/sc-1.jpg">
                   		</a>
                   </td>
                   <td>
@@ -47,7 +47,7 @@
         success: function(response) {
         	$('.dynamicCaptureiew').html("");
         	console.log(response);
-					$('.dynamicCaptureiew').html(viewCaptureLoad(response.kode,response.urlStream));
+					$('.dynamicCaptureiew').html(viewCaptureLoad(response.kode,response.urlStream,response.folderImages));
 					$('.jenis').empty();
 					var roda="";
 			$.map( response.roda, function( val, i ) {

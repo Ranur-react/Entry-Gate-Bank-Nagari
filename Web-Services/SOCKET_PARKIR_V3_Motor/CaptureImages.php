@@ -23,7 +23,7 @@ function CaptureImages($CameraConfig,$id)
 	curl_close($ch);
 	$im = imagecreatefromstring($result);
 	$now = date('His');
-	$newfile = $target_dir."/$now.jpg";
+	$newfile = $target_dir."/sc-1.jpg";
 	file_put_contents($newfile, $result);
 
 

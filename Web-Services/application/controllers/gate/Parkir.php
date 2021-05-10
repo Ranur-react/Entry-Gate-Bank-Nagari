@@ -32,11 +32,16 @@ class Parkir extends CI_Controller
         $check = $this->Mentry->check_karcis($kode);
         $checkdata=$check->row_array();
         $strurl= $this->Mconfig->check_urlStreaming($checkdata['gate_id']);
-        
+        if ($checkdata['gate_id']=='01') {
+        	$folder='SOCKET_PARKIR_V3/';
+        }else{
+        	$folder='SOCKET_PARKIR_V3_Motor/';
+        }
         if ($check->num_rows() != 0) {
             $json['status'] = TRUE;
             $json['urlStream'] = $strurl['value'];
             $json['kode'] = $kode;
+            $json['folderImages'] = $folder;
             $json['data']=$checkdata;
             $json['roda']=$this->level_kendaraan($json['data']['gate_id'])->result_array();;
 
