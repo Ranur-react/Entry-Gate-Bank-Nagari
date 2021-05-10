@@ -11,7 +11,9 @@ include 'dateformat.php';
 		}else{
 			$chiper=$_GET['data'];
 			// echo "Nulll";
-			$chipperteks=str_replace(" ","+",$chiper);
+		}
+		// echo $chipperteks;
+				 $chipperteks=str_replace(" ","+",$chiper);
 				$plainteks= decrypt($chipperteks,$denc_Key);
 				$data=parsing_react_api($plainteks);
 
@@ -35,7 +37,4 @@ include 'dateformat.php';
 								echo "Kadaluarsa ";	
 							 }
 						}
-		}
-		// echo $chipperteks;
-				 
  ?>
