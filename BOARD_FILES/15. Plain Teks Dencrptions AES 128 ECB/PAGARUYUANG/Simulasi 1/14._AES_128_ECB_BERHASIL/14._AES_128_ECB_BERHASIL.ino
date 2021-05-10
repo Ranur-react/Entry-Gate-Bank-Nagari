@@ -72,12 +72,12 @@ void GetFromDb(String value){
 
 
 void inisialisasNet(){
-    Ethernet.begin(mac);
-  Serial.println("Conncted on Local Network with your IP:");
-  localBoardIP=Ethernet.localIP();
-  Serial.println(localBoardIP);
-    Serial.println("Conncted on Local Network with your IP:");
-  localBoardIP=Ethernet.localIP();
+//    Ethernet.begin(mac);
+//  Serial.println("Conncted on Local Network with your IP:");
+//  localBoardIP=Ethernet.localIP();
+//  Serial.println(localBoardIP);
+//    Serial.println("Conncted on Local Network with your IP:");
+//  localBoardIP=Ethernet.localIP();
    if (Ethernet.begin(mac) == 0) {
     Serial.println("Failed to configure Ethernet using DHCP");
     // Check for Ethernet hardware present
@@ -87,16 +87,17 @@ void inisialisasNet(){
         delay(1); // do nothing, no point running without Ethernet hardware
       }
     }}
+    Serial.print("Connected");
 }
 void setup() {
   Serial.begin(9600); 
-  Serial1.begin(9600);
-  Serial1.setTimeout(100);
+
 
 //  ----------------Ethernet Intialiting
   Serial.println("Connecting..");
 inisialisasNet();
-
+  Serial1.begin(9600);
+  Serial1.setTimeout(500);
   Serial.println("Start");
 //  -------------END
 pinMode(GateCOM, OUTPUT);
@@ -106,6 +107,7 @@ digitalWrite(GateCOM2, LOW);
 
 void loop() {
   while (Serial1.available() > 0) {
+    kode="";
     kode = Serial1.readString();
     Serial.println(kode);
     GetFromDb(kode);

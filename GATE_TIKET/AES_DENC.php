@@ -21,6 +21,10 @@ function decrypt($data, $key) {
          die;
      }else if(strlen($data['dateValue'])<14){
         echo "Encripsi Gagal !! periksa Key AES ECB atau Periksa Krakter Yang Kamu Kirimkan";
+        echo "<br>";
+        echo $v;
+         die;
+
      }else{
 
      return $data;
