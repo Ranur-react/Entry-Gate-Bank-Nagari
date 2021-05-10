@@ -1,6 +1,36 @@
 <script type="text/javascript">
 	$( document ).ready(function() {
 	});
+	function Bayar() {
+					
+			  fetch('http://192.168.1.10:8080', {
+				method: 'POST',
+				body: JSON.stringify({
+					"NOTRANS":"201909100000008",
+					"BIAYA":"1000"
+				}),
+				headers: {
+					'Authorization' : 'BN OTA5',
+					'Signature' : 'k4dTe4N1n/RH5YxNSPHwPSKIc8NNgkvXxmasPz2In6M=',
+					'Timestamp' : '2020-12-12',
+					'Procces-Type' : 'Inquery',
+					'Content-Type' : 'application/x-www-form-urlencoded'
+				}
+			}).then(function (response) {
+				console.log("Data:----");
+				console.log(response);
+				if (response.ok) {
+					return response.json();
+				}
+				return Promise.reject(response);
+			}).then(function (data) {
+				console.log(data);
+			}).catch(function (error) {
+				console.warn('Something went wrong.', error);
+})
+
+			
+	}
 		function Diall() { 
 		
 			var uriA=`http://admin:Hikvision!!@192.168.1.61/ISAPI/Streaming/channels/101/picture`;	
@@ -13,7 +43,7 @@
 			input_karcis();
 
 		}
-		function viewCaptureLoad(kode,urlstream,folderImages) {
+		function viewCaptureLoad(kode,urlstream,folderImages,date) {
 			return `               
                   <td>
                 		<a class="StreamA" target="blank" href="<?php echo base_url()?>`+folderImages+`/capture/`+kode+`/sc-1.jpg">
@@ -28,11 +58,17 @@
                   	</div>
 	              </td>
                   <td>
-                  	Tanggal
-                  	Jam
+                  	`+date+`
                   </td>`;
 		}
-
+		var jenisKendaraan={};
+function tampil_harga() {
+	var t=$('#jenis').val();
+	console.log("Val:"+t);
+	console.log("Data Jenis Kendaraan:"+jenisKendaraan[t]);
+	$('#harga').text(jenisKendaraan[t]);
+	$('.totalharga').text(jenisKendaraan[t]);
+}
     function input_karcis() {
     	var data="&kode="+$('#input-karcis').val();
     $.ajax({
@@ -47,17 +83,18 @@
         success: function(response) {
         	$('.dynamicCaptureiew').html("");
         	console.log(response);
-					$('.dynamicCaptureiew').html(viewCaptureLoad(response.kode,response.urlStream,response.folderImages));
 					$('.jenis').empty();
 					var roda="";
 			$.map( response.roda, function( val, i ) {
+				jenisKendaraan[val.id_level]=val.harga;
 				var newOption = new Option(val.nama, val.id_level, false, false);
 				$('.jenis').append(newOption)
-				$('#input-plat').focus();
 			});
 			// console.log("Roda: "+roda)
+					$('.dynamicCaptureiew').html(viewCaptureLoad(response.kode,response.urlStream,response.folderImages,response.data.date));
         },
         complete: function() {
+				$('#input-plat').focus();
         	// alert("Complete")
         }
     });
@@ -96,7 +133,7 @@
 					    	<div class="col-md-3">
 						        <div class="form-group karciskolom">
 					                <label><i class="fa fa-ticket"></i> Input Kode Karcis</label>
-			                            <input onchange="Diall()" oninput="Diall()" autofocus='true'  type="text" name="kode_karcis" value="" placeholder="Kode Karcis Parkir" id="input-karcis" class="form-control">
+			                            <input  oninput="Diall()" autofocus='true'  type="text" name="kode_karcis" value="" placeholder="Kode Karcis Parkir" id="input-karcis" class="form-control">
 								</div>
 							</div>	
 							<div class="col-md-2">
@@ -108,7 +145,7 @@
 							<div class="col-md-2">
 						        <div class="form-group">
 					                <label>Jenis Kendaraan</label>
-					                <select name="jenis" class="form-control select2 jenis" id="">
+					                <select onchange="tampil_harga()" name="jenis" class="form-control select2 jenis" id="jenis">
 					                </select>
 					                
 								</div>
@@ -116,7 +153,7 @@
 							<div class="col-md-2">
 						        <div class="form-group">
 					                <label>Harga</label>
-					                <div class="form-control">Rp.5.000</div>
+					                <div class="form-control harga" id="harga">Rp.5.000</div>
 								</div>
 							</div>
 						</div>
@@ -159,15 +196,15 @@
                 	</td>
                 	<td>
 						<div class="form-group">
-							<label>Rp.0.000 </label>
+							<label class="totalharga" id="totalharga">Rp.0.000 </label>
 						</div>
                 	</td>
                 </tr>
                 <tr align="right" sty>
                 	<td ></td>
                 	<td ></td>
-                	<td ><a class="btn btn-app btn-block" style="font-size: 18px">
-			                <i class="fa fa-edit"></i> Edit
+                	<td ><a class="btn btn-app btn-block" onclick="Bayar()" style="font-size: 18px">
+			                <i class="fa"></i> Bayar
 			              </a>
                 	</td>
                 </tr>

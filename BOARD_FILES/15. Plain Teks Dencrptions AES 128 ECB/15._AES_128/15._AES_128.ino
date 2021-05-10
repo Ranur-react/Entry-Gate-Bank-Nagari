@@ -4,7 +4,7 @@
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED }; 
 char server[]="192.168.137.1"; //Domain atau Address WEBSERVER
 String host="Host: 192.168.137.1"; //Domain atau Address WEBSERVER
-//IPAddress ip(192,168,137,2);//IP Address Ethernet Shield
+IPAddress ip(192,168,137,201);//IP Address Ethernet Shield
 IPAddress  localBoardIP;
 EthernetClient client;
 //------------------------------------
@@ -78,9 +78,18 @@ void setup() {
 
 //  ----------------Ethernet Intialiting
   Serial.println("Connecting..");
-  Ethernet.begin(mac);
+  Ethernet.begin(mac,ip);
   Serial.println("Conncted on Local Network with your IP:");
   localBoardIP=Ethernet.localIP();
+   if (Ethernet.begin(mac) == 0) {
+    Serial.println("Failed to configure Ethernet using DHCP");
+    // Check for Ethernet hardware present
+    if (Ethernet.hardwareStatus() == EthernetNoHardware) {
+      Serial.println("Ethernet shield was not found.  Sorry, can't run without hardware. :(");
+      while (true) {
+        delay(1); // do nothing, no point running without Ethernet hardware
+      }
+    }}
   Serial.println(localBoardIP);
   Serial.println("Start");
 //  -------------END

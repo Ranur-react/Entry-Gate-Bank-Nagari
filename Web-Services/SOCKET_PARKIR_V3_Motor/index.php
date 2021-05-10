@@ -26,7 +26,7 @@ while(true){
 				// 	 Alaram DARURAT Berbunyi
 
 				Write($connfig,'MT00099');
-			        mysqli_query($conn, "INSERT INTO `tb_log` (`id`, `log`, `jenis_log`, `gate_id`,`date`) VALUES (NULL, 'Seseorang menekan Tombol Darurat', 'failure_parkir', '01',now());");
+			        mysqli_query($conn, "INSERT INTO `tb_log` (`id`, `log`, `jenis_log`, `gate_id`,`date`) VALUES (NULL, 'Seseorang menekan Tombol Darurat', 'failure_parkir', '02',now());");
 
 			}
 			// 3. Driver MENEKAN  Tombol "HIJAU" (php READ ='IN1ON')
@@ -34,13 +34,13 @@ while(true){
 
 				// 4. Generate ID Parkir
 			
-				$id= GenerateID_Entry("01");
+				$id= GenerateID_Entry("02");
 
 				$CameraConfig['folder']=$id;
 				// 5. KAMERA Melakukan Capture Hasil Capture Insert ke Folder dengan folder name 'ID' (php Capture_Vehcle())
 				// CaptureImages($CameraConfig,$id);
 				// 6. ID & date log insert to DB 
-				mysqli_query($conn, "INSERT INTO `tb_entry` (`id_entry`, `gate_id`,date) VALUES ('$id', '01',now());");
+				mysqli_query($conn, "INSERT INTO `tb_entry` (`id_entry`, `gate_id`,date) VALUES ('$id', '02',now());");
 				// 7. PHP mengirim Perintah Print Barcode (php PrintBarcode('Serial-Entry'))
 				// 5. KAMERA Melakukan Capture Hasil Capture Insert ke Folder dengan folder name 'ID' (php Capture_Vehcle())
 				

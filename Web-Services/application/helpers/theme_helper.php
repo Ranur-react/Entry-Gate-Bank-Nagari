@@ -32,6 +32,13 @@ if (!function_exists('iduser')) {
 		return $ci->session->userdata('kode');
 	}
 }
+if (!function_exists('rupiah')) {
+	function rupiah($angka)
+	{
+	$hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+	return $hasil_rupiah;
+	}
+}
 
 if (!function_exists('user')) {
 	function user()

@@ -47,6 +47,7 @@ class Parkir extends CI_Controller
 
         } else {
             $json['status'] = FALSE;
+            $json['kode'] = $kode;
         }
         echo json_encode($json);	
 	}
