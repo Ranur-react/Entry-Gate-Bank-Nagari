@@ -9,6 +9,6 @@ include 'koneksi.php';
 			// echo "Nulll";
 		}
 		echo "$chiper";
-	mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_log` (`log`, `jenis_log`, `gate_id`, `date`) VALUES ('wqewq', 'erorr', '01', '2021-05-11 14:17:08');");
+	mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_log` (`log`, `jenis_log`, `gate_id`, `date`) VALUES ('$chiper', 'erorr', '01', '2021-05-11 14:17:08');");
 		echo "Eror";
  ?>
