@@ -5,7 +5,8 @@
 #include <ESP8266HTTPClient.h>
 #include <WiFiClient.h>
 ESP8266WiFiMulti WiFiMulti;
-
+#include<SoftwareSerial.h>
+SoftwareSerial myserial(4,12);
 
 int Public_data;
 
@@ -37,16 +38,18 @@ void setup() {
   }
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP("Adr", "awwwwwww");
-  pinMode(2, OUTPUT);
-
+  Serial.println("Ready");
+ myserial.begin(9600);
+  myserial.setTimeout(100);
 }
+String kode="";
 void loop() {
- while (Serial.available() > 0) {
-    kode = Serial.readString();
-    delay(1000);
-      digitalWrite(2,HIGH);
-      delay(1000);
-        digitalWrite(2,LOW);
+ while (myserial.available() > 0) {
+  kode="";
+    kode = myserial.readString();
+    Serial.println("Respond:");
+    Serial.println(kode);
+        accesst("http://114.7.96.242/Entry-Gate-Bank-Nagari/GATE_TIKET/testqr.php?data="+kode);
   }
 }
 

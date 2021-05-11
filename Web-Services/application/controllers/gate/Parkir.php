@@ -43,11 +43,11 @@ class Parkir extends CI_Controller
             $json['kode'] = $kode;
             $json['folderImages'] = $folder;
             $json['data']=$checkdata;
+            
             $json['roda']=$this->level_kendaraan($json['data']['gate_id'])->result_array();;
 
         } else {
             $json['status'] = FALSE;
-            $json['kode'] = $kode;
         }
         echo json_encode($json);	
 	}
