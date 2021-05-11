@@ -9,6 +9,6 @@ include 'koneksi.php';
 			// echo "Nulll";
 		}
 		echo "$chiper";
-	mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'Coba ESP QR-CodeValue---->$chiper','error', '05',now());");
-
+	mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_log` (`log`, `jenis_log`, `gate_id`, `date`) VALUES ('wqewq', 'erorr', '01', '2021-05-11 14:17:08');");
+		echo "Eror";
  ?>
