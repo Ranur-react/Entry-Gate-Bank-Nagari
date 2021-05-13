@@ -110,8 +110,7 @@ void loop() {
     kode = Serial1.readString();
     Serial.println(kode);
     GetFromDb(kode);
-  }
-  if(state){
+      if(state){
       digitalWrite(GateCOM, LOW); 
       digitalWrite(GateCOM2, HIGH);
   delay(100);            // waits for a second
@@ -120,4 +119,6 @@ void loop() {
   state=false;
   delay(1000); 
   }
+  }
+
 }
