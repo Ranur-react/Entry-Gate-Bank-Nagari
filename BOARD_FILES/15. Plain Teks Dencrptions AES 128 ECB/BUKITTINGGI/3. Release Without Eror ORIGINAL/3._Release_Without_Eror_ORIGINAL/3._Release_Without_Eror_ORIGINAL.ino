@@ -101,8 +101,8 @@ inisialisasNet();
     Serial.println("Start");
 //  -------------END
 pinMode(GateCOM, OUTPUT);
-digitalWrite(GateCOM, HIGH);
 digitalWrite(GateCOM2, LOW);
+digitalWrite(GateCOM, HIGH);
 }
 
 void loop() {
@@ -121,11 +121,11 @@ void loop() {
     
   }
   if(state){
-      digitalWrite(GateCOM, LOW); 
-      digitalWrite(GateCOM2, HIGH);
+      digitalWrite(GateCOM2, HIGH); 
+      digitalWrite(GateCOM, LOW);
   delay(100);            // waits for a second
-  digitalWrite(GateCOM, HIGH);  // sets the digital pin 13 off
-  digitalWrite(GateCOM2, LOW);
+  digitalWrite(GateCOM2, LOW);  // sets the digital pin 13 off
+  digitalWrite(GateCOM, HIGH);
   state=false;
   delay(1000); 
   }
