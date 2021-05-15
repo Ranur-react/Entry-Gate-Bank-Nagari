@@ -43,10 +43,11 @@ void distance_sensor(){
   void ToBoolean(String value)
     {
         if(value =="true" ){
-          
+          Serial.println("2. Kondisi State TRUE");
           state=true;
           }else{
             state=false;  
+            Serial.println("2. Kondisi State FALSE");
           }
     }
  void Cetak(String Display,String Value){
@@ -89,9 +90,10 @@ void GetFromDb(String value){
                 Serial.println(indexBatasAwal);
                 Serial.println("Mulai Karakter String seharusnya: ");
                 String json=(String)data.substring(indexBatasAwal+8);
+                        json.trim();
                 Serial.println(json);
+                Serial.println("_1. Kondisi State From SERVER");
                 ToBoolean(json);
-
     }else{
      Cetak("S","Connections Filed ..!!");
      delay(100);
@@ -124,10 +126,9 @@ void pindaiUkurantubuh(){
       //command
       distance_sensor();
       if (distance<60){
-        delay(200);
+        delay(100);
         if (distance<60){
             adult="true";
-            GetFromDb(kode);
             break;  
           }
         }else{
@@ -175,12 +176,13 @@ pindaiUkurantubuh();
     
   }
   if(state){
+    Serial.println("3. Kondisi OUTPUT HIGH");
       digitalWrite(GateCOM2, HIGH); 
       digitalWrite(GateCOM, LOW);
-  delay(100);            // waits for a second
+  delay(10);            // waits for a second
   digitalWrite(GateCOM2, LOW);  // sets the digital pin 13 off
   digitalWrite(GateCOM, HIGH);
   state=false;
-  delay(1000); 
+  delay(100); 
   }
 }
