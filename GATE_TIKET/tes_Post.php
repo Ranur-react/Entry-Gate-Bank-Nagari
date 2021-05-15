@@ -23,25 +23,7 @@ include 'dateformat.php';
 		$serial=$plainteks;
 //dewasa state
 if($data['levelValue'] =='0001' & $adult=='true'){
-						$qry = mysqli_fetch_array(mysqli_query($conn,"SELECT*FROM `tb_tiketmasuk` WHERE `id_denc_serial`='$serial';"));
-						if (!empty($qry['id_denc_serial'])) {
-							mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku karena sudah digunakan','already_used', '05',now());");
-						echo "false";	
-						}else{
-							$level=$data['levelValue'];
-							$nomorbuktiValue=$data['nomorbuktiValue'];
-							 $date_serial=dateFormat($data['dateValue']);
-							 $time_serial=timeFormat($data['dateValue']);
-							 if (dateEqualas($date_serial)) {
-								mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '05')");
-							 	# code...
-								echo "true";	
-							 }else{
-							mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku /Kdaluarsa','ove_due', '05',now());");
-
-								echo "Kadaluarsa ";	
-							 }
-						}
+	echo "Asli Dewasa ESEKUSI";
 }else if($data['levelValue'] =='0001' & $adult=='false'){
 	echo "Palsu Dewasa REJECT";
 }
@@ -49,67 +31,13 @@ if($data['levelValue'] =='0001' & $adult=='true'){
 else if($data['levelValue'] =='0002' & $adult=='true'){
 	echo "Palsu anak-anak REJECT";
 }else if($data['levelValue'] =='0002' & $adult=='false'){
-						$qry = mysqli_fetch_array(mysqli_query($conn,"SELECT*FROM `tb_tiketmasuk` WHERE `id_denc_serial`='$serial';"));
-						if (!empty($qry['id_denc_serial'])) {
-							mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku karena sudah digunakan','already_used', '05',now());");
-						echo "false";	
-						}else{
-							$level=$data['levelValue'];
-							$nomorbuktiValue=$data['nomorbuktiValue'];
-							 $date_serial=dateFormat($data['dateValue']);
-							 $time_serial=timeFormat($data['dateValue']);
-							 if (dateEqualas($date_serial)) {
-								mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '05')");
-							 	# code...
-								echo "true";	
-							 }else{
-							mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku /Kdaluarsa','ove_due', '05',now());");
-
-								echo "Kadaluarsa ";	
-							 }
-						}
+	echo "Asli anak-anak ESEKUSI";
 }
 //Touris
 else if($data['levelValue'] =='0003' & $adult=='true'){
-						$qry = mysqli_fetch_array(mysqli_query($conn,"SELECT*FROM `tb_tiketmasuk` WHERE `id_denc_serial`='$serial';"));
-						if (!empty($qry['id_denc_serial'])) {
-							mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku karena sudah digunakan','already_used', '05',now());");
-						echo "false";	
-						}else{
-							$level=$data['levelValue'];
-							$nomorbuktiValue=$data['nomorbuktiValue'];
-							 $date_serial=dateFormat($data['dateValue']);
-							 $time_serial=timeFormat($data['dateValue']);
-							 if (dateEqualas($date_serial)) {
-								mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '05')");
-							 	# code...
-								echo "true";	
-							 }else{
-							mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku /Kdaluarsa','ove_due', '05',now());");
-
-								echo "Kadaluarsa ";	
-							 }
-						}
+	echo "Touris ESEKUSI";
 }else if($data['levelValue'] =='0003' & $adult=='false'){
-						$qry = mysqli_fetch_array(mysqli_query($conn,"SELECT*FROM `tb_tiketmasuk` WHERE `id_denc_serial`='$serial';"));
-						if (!empty($qry['id_denc_serial'])) {
-							mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku karena sudah digunakan','already_used', '05',now());");
-						echo "false";	
-						}else{
-							$level=$data['levelValue'];
-							$nomorbuktiValue=$data['nomorbuktiValue'];
-							 $date_serial=dateFormat($data['dateValue']);
-							 $time_serial=timeFormat($data['dateValue']);
-							 if (dateEqualas($date_serial)) {
-								mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '05')");
-							 	# code...
-								echo "true";	
-							 }else{
-							mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku /Kdaluarsa','ove_due', '05',now());");
-
-								echo "Kadaluarsa ";	
-							 }
-						}
+	echo "Touris ESEKUSI";
 
 }
 
