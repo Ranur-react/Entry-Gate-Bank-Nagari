@@ -10,6 +10,6 @@ include 'koneksi.php';
 		}
 
 mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'Test $chiper','already_used', '05',now());");
-	echo "Data Diterima";
+	echo "Data Diterima: $chiper";
 		
  ?>
