@@ -3,6 +3,7 @@ include 'koneksi.php';
 include 'AES_DENC.php';
 include 'key.php';
 include 'dateformat.php';
+include 'sensorCount.php';
 		echo json_encode("_start_");
 // 1. server menerima POST
 		if ($_SERVER["REQUEST_METHOD"] == 'POST') {
@@ -35,6 +36,7 @@ if($data['levelValue'] =='0001' & $adult=='true'){
 							 if (dateEqualas($date_serial)) {
 								mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '05')");
 							 	# code...
+							 	SensorCountHumans($conn);
 								echo "true";	
 							 }else{
 							mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku /Kdaluarsa','ove_due', '05',now());");

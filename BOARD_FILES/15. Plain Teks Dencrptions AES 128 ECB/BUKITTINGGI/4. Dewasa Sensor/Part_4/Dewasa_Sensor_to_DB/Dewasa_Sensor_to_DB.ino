@@ -179,7 +179,7 @@ pindaiUkurantubuh();
     Serial.println("3. Kondisi OUTPUT HIGH");
       digitalWrite(GateCOM2, HIGH); 
       digitalWrite(GateCOM, LOW);
-  delay(10);            // waits for a second
+  delay(100);            // waits for a second
   digitalWrite(GateCOM2, LOW);  // sets the digital pin 13 off
   digitalWrite(GateCOM, HIGH);
   state=false;
