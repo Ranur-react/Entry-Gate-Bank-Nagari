@@ -23,7 +23,8 @@ String kode="";
 boolean state=false;
 //end------------------
 //-----kondisi---dewasa=true--anak-anak=false
-boolean adult=false;
+String adult="false";
+//----end
 void distance_sensor(){
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
@@ -60,7 +61,8 @@ void GetFromDb(String value){
    
      value.trim();    
      String valuePOST1="data="+value;
-     String valuePOST2="dewasa="+adult;
+     String valuePOST2="adult="+adult;
+     String data=valuePOST1+"&"+valuePOST2;
      Cetak("S","Log Value");
      Cetak("S",valuePOST1);
      Cetak("S","DEWASa Value");
@@ -68,16 +70,14 @@ void GetFromDb(String value){
      
     if (client.connect(server, 80)) {    
         Cetak("S","POST Connect");
-        client.println("POST /banknagari/Entry-Gate-Bank-Nagari/GATE_TIKET/POSTTEST/index.php HTTP/1.1");
+        client.println("POST /Entry-Gate-Bank-Nagari/GATE_TIKET/tes_Post.php HTTP/1.1");
         client.println(host);
         client.println("Content-Type: application/x-www-form-urlencoded");
         client.println("Connection: close");
         client.print("Content-Length: ");
-        client.println(valuePOST1.length());
-        client.println(valuePOST2.length());
+        client.println(data.length());
         client.println();
-        client.print(valuePOST1);
-        client.print(valuePOST2);
+        client.print(data);
         client.println();
 
         client.println();
@@ -126,12 +126,12 @@ void pindaiUkurantubuh(){
       if (distance<60){
         delay(200);
         if (distance<60){
-            adult=true;
+            adult="true";
             GetFromDb(kode);
             break;  
           }
         }else{
-            adult=false;
+            adult="false";
             }
       //end-page-commadn
       loopcount = loopcount+1;endtime = millis();Serial.println("Test Loop Timer");
@@ -166,7 +166,7 @@ void loop() {
     Serial.print(kode.length());
     if(kode.length()>=65){
       Serial.println(kode);
-//    GetFromDb(kode);
+pindaiUkurantubuh();
     break;
       }
     
