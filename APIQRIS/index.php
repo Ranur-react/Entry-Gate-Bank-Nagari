@@ -1,12 +1,12 @@
 <?php 
 
 // $body = '{"NOTRANS":"201909100000008","BIAYA":"1000"}';
-$data["NOTRANS"]="9999999999";
-$data["BIAYA"]="10000";
+$data["NOTRANS"]="201909100000008";
+$data["BIAYA"]="1000";
 $array = array_map('trim', $data );
 $body= json_encode($array);
 
-$timestamp = "2020-12-12";
+$timestamp = '2020-12-12';
 $secretkey = "BIM%B4nd4r4111111==";
 //$signature = hash('sha256', trim(strtoupper($body)).":".$timestamp);
 $signature = hash_hmac('sha256',trim(strtoupper($body)).":".$timestamp,$secretkey);
@@ -18,7 +18,7 @@ curl_setopt_array($curl, array(
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 6000,
+  CURLOPT_TIMEOUT => 10,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "POST",
   CURLOPT_POSTFIELDS => $body,
@@ -28,7 +28,7 @@ curl_setopt_array($curl, array(
     "Content-Type: application/x-www-form-urlencoded",
     "Postman-Token: ac251dbf-3b51-4ebb-aa22-d9337674f391",
     "Procces-Type: Inquery",
-    "Signature: k4dTe4N1n/RH5YxNSPHwPSKIc8NNgkvXxmasPz2In6M=",
+    "Signature: ".$signature,
     "Timestamp: $timestamp"
   ),
 ));
