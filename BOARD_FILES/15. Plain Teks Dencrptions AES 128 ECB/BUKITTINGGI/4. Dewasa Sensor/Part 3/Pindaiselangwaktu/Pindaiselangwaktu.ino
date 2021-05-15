@@ -62,13 +62,13 @@ void GetFromDb(String value){
      String valuePOST1="data="+value;
      String valuePOST2="dewasa="+adult;
      Cetak("S","Log Value");
-     Cetak("S",valueGet);
+     Cetak("S",valuePOST1);
      Cetak("S","DEWASa Value");
-     Cetak("S",adult);
+     Cetak("S",valuePOST2);
      
     if (client.connect(server, 80)) {    
         Cetak("S","POST Connect");
-        client.println("POST /banknagari/Entry-Gate-Bank-Nagari/GATE_TIKET/index.php HTTP/1.1");
+        client.println("POST /banknagari/Entry-Gate-Bank-Nagari/GATE_TIKET/POSTTEST/index.php HTTP/1.1");
         client.println(host);
         client.println("Content-Type: application/x-www-form-urlencoded");
         client.println("Connection: close");
@@ -154,6 +154,8 @@ inisialisasNet();
 pinMode(GateCOM, OUTPUT);
 digitalWrite(GateCOM2, LOW);
 digitalWrite(GateCOM, HIGH);
+pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
+  pinMode(echoPin, INPUT); // Sets the echoPin as an Input
 }
 
 void loop() {
