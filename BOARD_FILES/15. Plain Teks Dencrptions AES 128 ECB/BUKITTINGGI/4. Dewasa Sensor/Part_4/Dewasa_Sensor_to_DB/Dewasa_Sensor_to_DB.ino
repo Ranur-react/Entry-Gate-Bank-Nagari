@@ -125,9 +125,9 @@ void pindaiUkurantubuh(){
     {
       //command
       distance_sensor();
-      if (distance<60){
+      if (distance<80){
         delay(100);
-        if (distance<60){
+        if (distance<80){
             adult="true";
             break;  
           }
