@@ -34,9 +34,9 @@ if($data['levelValue'] =='0001' & $adult=='true'){
 							 $date_serial=dateFormat($data['dateValue']);
 							 $time_serial=timeFormat($data['dateValue']);
 							 if (dateEqualas($date_serial)) {
+							 	SensorCountHumans($conn);
 								mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '05')");
 							 	# code...
-							 	SensorCountHumans($conn);
 								echo "true";	
 							 }else{
 							mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku /Kdaluarsa','ove_due', '05',now());");
