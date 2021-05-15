@@ -9,8 +9,8 @@ IPAddress  localBoardIP;
 EthernetClient client;
 //------------------------------------
 // defines variables Sensor Ultra Sonic---------
-const int trigPin = 16;
-const int echoPin = 17;
+const int trigPin = 17;
+const int echoPin = 16;
 long duration;
 int distance;
 //--------------------------------------------
@@ -119,7 +119,7 @@ void inisialisasNet(){
 }
 void pindaiUkurantubuh(){
     int loopcount=0;long starttime = millis();long endtime = starttime;
-    while((endtime - starttime) <= 3000 ) // do this loop for up to 1000mS
+    while((endtime - starttime) <= 500 ) // do this loop for up to 1000mS
     {
       //command
       distance_sensor();
@@ -127,7 +127,7 @@ void pindaiUkurantubuh(){
         delay(200);
         if (distance<60){
             adult="true";
-//            GetFromDb(kode);
+            GetFromDb(kode);
             break;  
           }
         }else{
@@ -140,6 +140,7 @@ void pindaiUkurantubuh(){
     Serial.println("Scan Finised :");
     Serial.print (loopcount,DEC);
     Serial.print(" s");
+    GetFromDb(kode);
   }
 void setup() {
   Serial.begin(9600); 
