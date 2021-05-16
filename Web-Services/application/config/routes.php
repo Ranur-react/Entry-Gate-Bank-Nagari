@@ -18,6 +18,7 @@ $route['EntryMotor'] = 'socket/EntryMotor';
 
 
 $route['kasir'] = 'gate/Parkir';
+$route['qrisapi'] = 'gate/Parkir/qrisApi_waiting';
 $route['Laporan'] = 'gate/Parkir';
 
 

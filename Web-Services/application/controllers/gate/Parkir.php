@@ -67,5 +67,18 @@ class Parkir extends CI_Controller
 		$data['urlstream'] = $urlstream['value'];
 		return $this->load->view('gate/parkir/capture',$data);
 	}
+	public function qrisApi_waiting()
+	{
+		$obj = json_decode($this->input->post('myData'));
+		// echo $obj->signature;
+
+		// $database = $this->input->post('body');
+		// $signature = $this->input->post('signature');
+		// echo $database;
+		// $d['harga'] = '';
+		// $d['tiket'] = '';
+		// $d['waitingtime'] = '';
+		// $this->load->view('gate/bayar/index', $d);
+	}
 	
 }
