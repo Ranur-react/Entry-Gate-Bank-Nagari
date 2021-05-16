@@ -4,6 +4,13 @@
 <script type="text/javascript">
 // Global Variabel
 		var database={};
+        		database['idkarcis']=null;
+        		database['noplat']=null;
+        		database['jenis']=null;
+        		database['harga']=null;
+        		database['keterangan']=null;
+        		database['Timestamp']=null;
+				database['pembayaran']=null;
 
 
 
@@ -19,36 +26,7 @@ $('#input-plat').on('keypress',function(e) {
     }
 });
 	});
-	function Bayar() {
-					
-			  fetch('http://192.168.1.10:8080', {
-				method: 'POST',
-				body: JSON.stringify({
-					"NOTRANS":"201909100000008",
-					"BIAYA":"1000"
-				}),
-				headers: {
-					'Authorization' : 'BN OTA5',
-					'Signature' : 'k4dTe4N1n/RH5YxNSPHwPSKIc8NNgkvXxmasPz2In6M=',
-					'Timestamp' : '2020-12-12',
-					'Procces-Type' : 'Inquery',
-					'Content-Type' : 'application/x-www-form-urlencoded'
-				}
-			}).then(function (response) {
-				console.log("Data:----");
-				console.log(response);
-				if (response.ok) {
-					return response.json();
-				}
-				return Promise.reject(response);
-			}).then(function (data) {
-				console.log(data);
-			}).catch(function (error) {
-				console.warn('Something went wrong.', error);
-})
 
-			
-	}
 		function Diall() { 
 		
 			var uriA=`http://admin:Hikvision!!@192.168.1.61/ISAPI/Streaming/channels/101/picture`;	
@@ -156,34 +134,120 @@ function noplatInput() {
 function inputketerangan() {
 	database['keterangan']=$('#keterangan').val();
 }
-function Tunai() {
 
-	console.log("Data-----:")
-	console.log(database)
+function LoadingQRIS(argument) {
+		$.ajax({
+			type: "post",
+			url: "<?= site_url('qrisloading') ?>",
+			data: {myData: JSON.stringify(database)},
+			cache: false,
+			success: function(response) {
+				$('#LoadingQris').html(response);
+				$('#modal-Qris-waiting').modal('show');
+				qris_api();
+			}
+		});
 }
 function qris_api() {
 	var NOTRANS=database.idkarcis;
 	var BIAYA=database.harga;
 	var Timestamp=database.Timestamp;
 	var body="{NOTRANS:"+NOTRANS+",BIAYA:"+BIAYA+"}";
-
-var hash = CryptoJS.HmacSHA256(body+":"+Timestamp, "BIM%B4nd4r4111111==");
-  var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
-  console.log(hashInBase64);
-  // document.write(hashInBase64);
-		database['signature']="hashInBase64";
+	var key='<?= $signatureKey ?>'
+	var hash = CryptoJS.HmacSHA256(body+":"+Timestamp, key);
+	var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);;
+		database['signature']=hashInBase64;
 		$.ajax({
 			type: "post",
 			url: "<?= site_url('qrisapi') ?>",
-			data: {myData: JSON.stringify(database)},
-			cache: false,
+			data: {jsonData: JSON.stringify(database)},
+	        dataType: "json",
+	        cache: false,
+	        beforeSend: function(response) {
+                        $('.LoadIcon').html('<i class="fa fa-spin fa-spinner text-yellow"></i> Tunggu 60 detik');
+
+	        },
 			success: function(response) {
-				$('#LoadingQris').html(response);
-				$('#modal-Qris-waiting').modal('show');
+				if (response.state) {
+					if (response.messages.rc=='00') {
+                        $('.LoadIcon').html('<i class="fa fa-check-circle text-green"></i> Pembayaran Berhasil selesai');
+                        nontunai()
+					}else{
+                        $('.LoadIcon').html('<i class="fa fa-spin fa-spinner text-yellow"></i> Waktu Tunggu Pembayaran Habis, Mencoba Meninjau Ulang Pembayaran (code: '+response.messages.rc+' messages: '+response.messages.message+')');
+                        qris_api_getstatus();
+					}
+				}else{
+                        qris_api_getstatus();
+				}
+                        
+
+			},
+			complete:function(response) {
 			}
 		});
 	}
+	function qris_api_getstatus() {
+	var NOTRANS=database.idkarcis;
+	var BIAYA=database.harga;
+	var Timestamp=database.Timestamp;
+	var body="{NOTRANS:"+NOTRANS+",BIAYA:"+BIAYA+"}";
+	var key='<?= $signatureKey ?>'
+	var hash = CryptoJS.HmacSHA256(body+":"+Timestamp, key);
+	var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);;
+		database['signature']=hashInBase64;
+		$.ajax({
+			type: "post",
+			url: "<?= site_url('qrisapiGetstatus') ?>",
+			data: {jsonData: JSON.stringify(database)},
+			cache: false,
+	        beforeSend: function(response) {
+	        },
+			success: function(response) {
+				// if (!response.state) {
+				// 	$('.LoadIcon').html('<i class="fa fa-plug text-yellow"></i>Eror Get Status (Messages: '+response.messages+')');
+				// }
+					if (response.messages.rc=='00') {
+                        $('.LoadIcon').html('<i class="fa fa-check-circle text-red"></i> Pembayaran Berhasil selesai');
+                        nontunai()
 
+					}else{
+                        $('.LoadIcon').html('<i class="fa fa-close  text-red"></i> Pembayaran BATAL Dilakukan!! (code: '+response.messages.rc+' messages: '+response.messages.message+')');
+					}
+
+			}
+		});
+	}
+	function tunai() {
+		database['pembayaran']='tunai';
+		bayarEsekusi();
+	}
+	function nontunai() {
+		database['pembayaran']='qris';
+		bayarEsekusi()
+	}
+function bayarEsekusi() {
+		$.ajax({
+			type: "post",
+			url: "<?= site_url('bayar') ?>",
+			data: {jsonData: JSON.stringify(database)},
+	        dataType: "json",
+	        cache: false,
+	        beforeSend: function(response) {
+                      console.log(response)
+	        },
+			success: function(response) {
+				console.log(response)
+				if (response.status) {
+					location.reload(); 
+				}else{
+				$('#modal-notifikasi').modal('show');
+				$('.notif-title').html("Gagal");
+				$('.notif-Teks').html("Data Karcis & No Plat Tidak Boleh Kosong");
+
+				}
+			}
+		});
+}
 	 $(function () {
     //Initialize Select2 Elements
     $('.select2').select2() ;
@@ -234,6 +298,7 @@ var hash = CryptoJS.HmacSHA256(body+":"+Timestamp, "BIM%B4nd4r4111111==");
 		<div class="box box-info">
             <div class="box-header">
               <h3 class="box-title"><i class="fa fa-credit-card"></i> Bayar Parkir</h3>
+				<?= $this->session->flashdata('pesan'); ?>
             </div>
             <div class="box-body">
 			    <div class="row">
@@ -257,7 +322,6 @@ var hash = CryptoJS.HmacSHA256(body+":"+Timestamp, "BIM%B4nd4r4111111==");
 					                <label>Jenis Kendaraan</label>
 					                <select onchange="tampil_harga()"  name="jenis" class="form-control select2 jenis" id="jenis">
 					                </select>
-					                
 								</div>
 							</div>
 							<div class="col-md-2">
@@ -318,14 +382,14 @@ var hash = CryptoJS.HmacSHA256(body+":"+Timestamp, "BIM%B4nd4r4111111==");
 						</div>
                 	</td>
                 	<td colspan="2" >
-                		<a class="btn btn-app btn-block btn-sumbit" onclick="qris_api()" style="font-size: 18px">
+                		<a class="btn btn-app btn-block btn-sumbit" onclick="LoadingQRIS()" style="font-size: 18px">
                 			<div class="btn-lable">Bayar Dengan</div>
                 			<div class="btn-icon">
                 				<img src="<?= theme() ?>images/qris.png" class="tombolIcon"	 alt="">
                 			</div>
   
 		              </a>
-                  		<a class="btn btn-app btn-block" onclick="Tunai()" style="font-size: 18px">
+                  		<a class="btn btn-app btn-block" onclick="tunai()" style="font-size: 18px">
 			                <i class="fa"></i> Bayar Tunai
 		              </a>
 
@@ -340,3 +404,30 @@ var hash = CryptoJS.HmacSHA256(body+":"+Timestamp, "BIM%B4nd4r4111111==");
 	</div>
 </div>
 <div  id="LoadingQris"></div>
+	
+	<div class="modal fade " id="modal-notifikasi">
+    <div class="modal-dialog ">
+        <div class=" modal-content">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="box box-primary box-solid " style="border-radius: 5px">
+                <?= $this->session->flashdata('pesan'); ?>
+                    <div class="box-body box-bayar">
+                        <h3 align="center" class="box-title notif-title ">
+                        </h3>
+                        <div class="notifIcon">
+                        	
+                        </div>
+                        <div class="notif-Teks" style="text-align: center;"></div>
+                            
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+

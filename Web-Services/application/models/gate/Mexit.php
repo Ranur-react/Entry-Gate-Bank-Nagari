@@ -7,5 +7,16 @@ class Mexit extends CI_Model
  JOIN `tb_entry` ON `tb_entry`.id_entry=`tb_exit`.`id_Entry`
  JOIN `tb_daftar_gate` ON `tb_daftar_gate`.id=`tb_entry`.`gate_id`")->result_array();
 	}
+	public function store($database)
+	{
+		$noplat=$database->noplat;
+		$notiket=$database->idkarcis;
+		$jenis=$database->jenis;
+		$harga=$database->harga;
+		$pembayaran=$database->pembayaran;
+		$keterangan=$database->keterangan;
+		$this->db->query("INSERT INTO `tb_exit`  VALUES ('$noplat', '$notiket',NOW(),'$jenis','$harga','$pembayaran','$keterangan');");
+		
+	}
 }
 ?>
