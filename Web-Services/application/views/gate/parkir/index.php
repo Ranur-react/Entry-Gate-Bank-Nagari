@@ -249,6 +249,15 @@ function bayarEsekusi() {
 			success: function(response) {
 				console.log(response)
 				if (response.status) {
+					if (database['jenis']=='roda2') {
+						//Buka Gate Motor
+					window.location = "<?= base_url() ?>SOCKET_PARKIR_V4_Motor/";
+
+					}else{
+						//Buka Gate Mobil
+					window.location = "<?= base_url() ?>SOCKET_PARKIR_V4_Mobil/";
+
+					}
 					location.reload(); 
 				}else{
 				$('#modal-notifikasi').modal('show');
