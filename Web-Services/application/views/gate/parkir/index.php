@@ -15,6 +15,17 @@
 
 
 	$( document ).ready(function() {
+		  $('body').on('keypress', function (e) {
+			    console.log('I have been pressed', e);
+			    if ( e.shiftKey && ( e.which === 81 ) ) {
+				  console.log( "You pressed shiftKey + Q" );
+				  LoadingQRIS()
+				}
+			    if ( e.shiftKey && ( e.which === 84 ) ) {
+				  console.log( "You pressed shiftKey + T" );
+				  tunai()
+				}
+			})
 $('#input-karcis').on('keypress',function(e) {
     if(e.which == 13) {
         Diall()
@@ -241,8 +252,8 @@ function bayarEsekusi() {
 					location.reload(); 
 				}else{
 				$('#modal-notifikasi').modal('show');
-				$('.notif-title').html("Gagal");
-				$('.notif-Teks').html("Data Karcis & No Plat Tidak Boleh Kosong");
+				$('.notif-title').html(response.title);
+				$('.notif-Teks').html(response.pesan);
 
 				}
 			}
@@ -258,6 +269,15 @@ function bayarEsekusi() {
 		border-radius: 20px;
 		text-align: center;
 	}
+	.mini-Info{
+		font-size: 10px;
+		letter-spacing: 1px;
+		color: grey;
+	}.medium-Info{
+		font-size: 14px;
+		letter-spacing: 1px;
+		color: red;
+	}
 	.btn{
 		border-radius: 10px;
 	}
@@ -272,25 +292,36 @@ function bayarEsekusi() {
 	}
 	.btn-icon{
 		/*background-color: yellowx	;*/
-		width: 50%;
+		width: 40%;
 		height: 100%;
 		display: flex;
 		flex-direction: row;
-		/*margin-bottom: -10%;*/
-		/*margin-top: 10px;*/
+		margin-left: 10px;
 		padding-top: -10px;
 	}
 	.btn-lable{
 		/*background-color: grey;*/
-		width: 50%;
+		width: 40%;
 		height: 100%;
 		text-align: right;
 
 	}
 		.tombolIcon{
+			margin-left: 20px;
 			width: auto;height: 100%;
 			margin-right: 10%;
 	}
+	.bayar-btn{
+		padding-left: 20px;
+	}    
+	.box-bayar{
+        display: flex;
+        flex-direction: column;
+    }
+    .logoBayar{
+        widows: 50%;
+        height: auto;
+    }
 </style>
 
 <div class="row">
@@ -309,12 +340,15 @@ function bayarEsekusi() {
 						        <div class="form-group karciskolom">
 					                <label><i class="fa fa-ticket"></i> Input Kode Karcis</label>
 			                            <input  oninput="//Diall()" autofocus='true'  type="text" name="kode_karcis" value="" placeholder="Kode Karcis Parkir" id="input-karcis" class="form-control">
+										<div class="medium-Info">*</div>
+			                            
 								</div>
 							</div>	
 							<div class="col-md-2">
 						        <div class="form-group">
 					                <label>No Plat </label>
 			                            <input  type="text" oninput="noplatInput()" name="noplat" value="" placeholder="BA 0000 xx" id="input-plat" class="form-control">
+										<div class="medium-Info">*</div>
 								</div>
 							</div>
 							<div class="col-md-4">
@@ -337,6 +371,7 @@ function bayarEsekusi() {
 	            <div class="row">
 	            	<div class="col-md-12">
 	            		<div class="box-body table-responsive no-padding">
+			<div class="mini-Info">QRIS: Shift+Q  Tunai:Shift+T </div>
               <table class="table table-hover">
                 <tr>
                   <th>Foto Waktu Masuk</th>
@@ -381,17 +416,27 @@ function bayarEsekusi() {
 			                <textarea oninput="inputketerangan()" placeholder="Kendaraan lebih dari 1 hari" class="form-control " id="keterangan"></textarea>
 						</div>
                 	</td>
-                	<td colspan="2" >
-                		<a class="btn btn-app btn-block btn-sumbit" onclick="LoadingQRIS()" style="font-size: 18px">
-                			<div class="btn-lable">Bayar Dengan</div>
-                			<div class="btn-icon">
-                				<img src="<?= theme() ?>images/qris.png" class="tombolIcon"	 alt="">
-                			</div>
-  
-		              </a>
-                  		<a class="btn btn-app btn-block" onclick="tunai()" style="font-size: 18px">
-			                <i class="fa"></i> Bayar Tunai
-		              </a>
+                	<td colspan="2" style="display: flex;flex-direction: row;justify-content: center;align-items: center;" >
+				        <div class="form-group">
+			                <label>Bayar</label>
+	                		<a class="btn btn-app btn-block btn-sumbit bg-teal" onclick="LoadingQRIS()" style="font-size: 18px">
+	                			<div class="btn-lable">Bayar Dengan</div>
+	                			<div class="btn-icon">
+	                				<img src="<?= theme() ?>images/qris_only.png" class="tombolIcon"	 alt="">
+	                			</div>
+		  
+				              </a>
+						</div>
+				        <div class="form-group bayar-btn">
+			                <label></label>
+                          		<a class="btn btn-app btn-block bg-olive btn-sumbit" onclick="tunai()" style="font-size: 18px">
+				                <div class="btn-lable">Bayar Tunai</div>
+	                			<div class="btn-icon">
+	                				<img src="<?= theme() ?>images/rupiah.png" class="tombolIcon"	 alt="">
+	                			</div>
+			              </a>
+						</div>
+
 
                 	</td>
                 </tr>
@@ -411,13 +456,10 @@ function bayarEsekusi() {
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div class="box box-primary box-solid " style="border-radius: 5px">
-                <?= $this->session->flashdata('pesan'); ?>
                     <div class="box-body box-bayar">
                         <h3 align="center" class="box-title notif-title ">
                         </h3>
-                        <div class="notifIcon">
-                        	
-                        </div>
+                                <img src="<?= theme() ?>images/filedpay.png" class="logoBayar" alt="">
                         <div class="notif-Teks" style="text-align: center;"></div>
                             
                     </div>

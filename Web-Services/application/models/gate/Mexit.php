@@ -18,5 +18,12 @@ class Mexit extends CI_Model
 		$this->db->query("INSERT INTO `tb_exit`  VALUES ('$noplat', '$notiket',NOW(),'$jenis','$harga','$pembayaran','$keterangan');");
 		
 	}
+		public function checkTiket($database)
+	{
+		$notiket=$database->idkarcis;
+		return $this->db->query("SELECT*FROM `tb_exit` WHERE id_entry='$notiket';");
+		
+	}
+
 }
 ?>

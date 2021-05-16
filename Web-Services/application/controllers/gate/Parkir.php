@@ -184,12 +184,22 @@ class Parkir extends CI_Controller
 	{
 		$database = json_decode($this->input->post('jsonData'));
 		if (!empty($database->idkarcis)&& !empty($database->noplat)) {
-				$json['status'] = true;
-				$json['pesan']	="Bisa";
-				$this->Mexit->store($database);
+						$checkTiket=$this->Mexit->checkTiket($database);
+						if ($checkTiket->num_rows()==0) {
+							// $json['status'] = true;
+							$json['pesan']	="Bisa :Num Rows".$checkTiket->num_rows();
+							// $this->Mexit->store($database);
+						}else{
+							$json['status'] = false;
+							$json['title']	="Tidak Bisa";
+							$json['pesan']	=" Tiket Sudah Pernah Digunakan";
+						}
+				
 				$this->session->set_flashdata('pesan', sukses('data Karcis  berhasil di simpan'));
 			} else {
 				$json['status'] = false;
+				$json['title']	="Gagal";
+				$json['pesan']	="Data Karcis & No Plat Tidak Boleh Kosong";
 				// $this->session->set_flashdata('pesan', danger('Data Karcis & No Plat Tidak Boleh Kosong'));
 			}
 
