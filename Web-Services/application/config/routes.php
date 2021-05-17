@@ -15,6 +15,8 @@ $route['MobilStreming'] = 'gate/Parkir/MobilStreming';
 $route['cekkarcis'] = 'gate/Parkir/cekkarcis';
 $route['EntryMobil'] = 'socket/entry';
 $route['EntryMotor'] = 'socket/EntryMotor';
+$route['Exit'] = 'socket/Exitexec';
+$route['ExitMotor'] = 'socket/ExitMotor';
 
 
 $route['kasir'] = 'gate/Parkir';
@@ -24,6 +26,7 @@ $route['qrisapiGetstatus'] = 'gate/Parkir/GET_QRIS';
 $route['bayar'] = 'gate/Parkir/bayar';
 $route['Laporan'] = 'gate/Parkir';
 
+$route['Print'] = 'gate/PrintESC';
 
 $route['logout'] = 'auth/logout';
 $route['login'] = 'auth/validate';

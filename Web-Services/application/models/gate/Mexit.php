@@ -15,7 +15,7 @@ class Mexit extends CI_Model
 		$harga=$database->harga;
 		$pembayaran=$database->pembayaran;
 		$keterangan=$database->keterangan;
-		$this->db->query("INSERT INTO `tb_exit`  VALUES ('$noplat', '$notiket',NOW(),'$jenis','$harga','$pembayaran','$keterangan');");
+		$this->db->query("INSERT INTO `tb_exit`  VALUES ('$noplat', '$notiket',NOW(),'$jenis','$harga','$pembayaran','$keterangan','');");
 		
 	}
 		public function checkTiket($database)

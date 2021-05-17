@@ -211,22 +211,24 @@ function qris_api() {
 			url: "<?= site_url('qrisapiGetstatus') ?>",
 			data: {jsonData: JSON.stringify(database)},
 			cache: false,
+	        dataType: "json",
 	        beforeSend: function(response) {
 	        },
 			success: function(response) {
-				// if (!response.state) {
-				// 	$('.LoadIcon').html('<i class="fa fa-plug text-yellow"></i>Eror Get Status (Messages: '+response.messages+')');
-				// }
-					if (response.messages.rc=='00') {
-                        $('.LoadIcon').html('<i class="fa fa-check-circle text-red"></i> Pembayaran Berhasil selesai');
-                        nontunai()
-
-					}else{
-                        $('.LoadIcon').html('<i class="fa fa-close  text-red"></i> Pembayaran BATAL Dilakukan!! (code: '+response.messages.rc+' messages: '+response.messages.message+')');
+				// console.log("Array:");
+				// console.log(response.status);
+				if (!response.status=="true") {
+					$('.LoadIcon').html('<i class="fa fa-plug text-yellow"></i>Eror Get Status (Messages: '+response.messages+')');
+				}else{
+						if (response.messages.rc=='00') {
+	                        $('.LoadIcon').html('<i class="fa fa-check-circle text-red"></i> Pembayaran Berhasil selesai');
+	                        nontunai()
+						}else{
+	                        $('.LoadIcon').html('<i class="fa fa-close  text-red"></i> Pembayaran BATAL Dilakukan!! (code: '+response.messages.rc+' messages: '+response.messages.message+')');
+						}
 					}
-
-			}
-		});
+				}
+			});
 	}
 	function tunai() {
 		database['pembayaran']='tunai';
@@ -251,14 +253,15 @@ function bayarEsekusi() {
 				if (response.status) {
 					if (database['jenis']=='roda2') {
 						//Buka Gate Motor
-					window.location = "<?= base_url() ?>SOCKET_PARKIR_V4_Motor/";
-
+					// window.location = "<?= base_url() ?>SOCKET_PARKIR_V4_Motor/index.php";
+					OpenMotor();
 					}else{
 						//Buka Gate Mobil
-					window.location = "<?= base_url() ?>SOCKET_PARKIR_V4_Mobil/";
+					// window.location = "<?= base_url() ?>SOCKET_PARKIR_V4_Mobil/index.php";
+					OpenMobil()
 
 					}
-					location.reload(); 
+					// location.reload(); 
 				}else{
 				$('#modal-notifikasi').modal('show');
 				$('.notif-title').html(response.title);
@@ -267,6 +270,26 @@ function bayarEsekusi() {
 				}
 			}
 		});
+}
+function OpenMobil() {
+	               request= $.ajax({
+                    url: '<?= site_url('Exit') ?>',
+                    type: "post",
+                    cache: false,
+                    success: function(response) {
+                    alert("Pintu");		
+                    }
+                });
+}
+function OpenMotor() {
+	               request= $.ajax({
+                    url: '<?= site_url('ExitMotor') ?>',
+                    type: "post",
+                    cache: false,
+                    success: function(response) {
+                    alert("Pintu");		
+                    }
+                });
 }
 	 $(function () {
     //Initialize Select2 Elements

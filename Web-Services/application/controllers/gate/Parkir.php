@@ -170,11 +170,13 @@ class Parkir extends CI_Controller
 
 				curl_close($curl);
 				if ($err) {
+						$json['status']="false";
 						$json['state']=false;
 						$json['messages']=$err;
 				  
 				} else {
 				  // echo $response;
+						$json['status']="true";
 					  $json['state']=true;
 						$json['messages']=json_decode($response);
 				}
@@ -183,19 +185,19 @@ class Parkir extends CI_Controller
 	public function bayar()
 	{
 		$database = json_decode($this->input->post('jsonData'));
-		if (!empty($database->idkarcis)&& !empty($database->noplat)) {
+		if (!empty($database->idkarcis)) {
 						$checkTiket=$this->Mexit->checkTiket($database);
 						if ($checkTiket->num_rows()==0) {
-							// $json['status'] = true;
+							$json['status'] = true;
 							$json['pesan']	="Bisa :Num Rows".$checkTiket->num_rows();
-							// $this->Mexit->store($database);
+							$this->Mexit->store($database);
 						}else{
 							$json['status'] = false;
 							$json['title']	="Tidak Bisa";
 							$json['pesan']	=" Tiket Sudah Pernah Digunakan";
 						}
 				
-				$this->session->set_flashdata('pesan', sukses('data Karcis  berhasil di simpan'));
+				$this->session->set_flashdata('pesan', sukses('data Karcis  berhasil di Proses...  Pintu Terbuka'));
 			} else {
 				$json['status'] = false;
 				$json['title']	="Gagal";
