@@ -15,6 +15,10 @@
 
 
 	$( document ).ready(function() {
+		$( '#modal-notifikasi-berhasil' )
+   .on( function(e) {
+       console.log(e);
+   })
 		  $('body').on('keypress', function (e) {
 			    console.log('I have been pressed', e);
 			    if ( e.shiftKey && ( e.which === 81 ) ) {
@@ -254,14 +258,21 @@ function bayarEsekusi() {
 					if (database['jenis']=='roda2') {
 						//Buka Gate Motor
 					// window.location = "<?= base_url() ?>SOCKET_PARKIR_V4_Motor/index.php";
+					  /// wait 3 seconds
+				    setTimeout(function() {
 					OpenMotor();
+				    }, 100);
 					}else{
 						//Buka Gate Mobil
 					// window.location = "<?= base_url() ?>SOCKET_PARKIR_V4_Mobil/index.php";
+					setTimeout(function() {
 					OpenMobil()
-
+				    }, 100);
 					}
+					// setTimeout(function() {
 					// location.reload(); 
+
+				 //    }, 4000);
 				}else{
 				$('#modal-notifikasi').modal('show');
 				$('.notif-title').html(response.title);
@@ -277,7 +288,10 @@ function OpenMobil() {
                     type: "post",
                     cache: false,
                     success: function(response) {
-                    alert("Pintu");		
+                    $('#modal-notifikasi-berhasil').modal('show');
+								$('.notif-title').html("Terimakasih");
+								$('.notif-Teks').html("Biaya Parkir Berhasil di Proses");
+					location.reload();
                     }
                 });
 }
@@ -287,7 +301,11 @@ function OpenMotor() {
                     type: "post",
                     cache: false,
                     success: function(response) {
-                    alert("Pintu");		
+                    $('#modal-notifikasi-berhasil').modal('show');
+								$('.notif-title').html("Terimakasih");
+								$('.notif-Teks').html("Biaya Parkir Berhasil di Proses");	
+					location.reload();
+								
                     }
                 });
 }
@@ -451,6 +469,16 @@ function OpenMotor() {
                 	<td colspan="2" style="display: flex;flex-direction: row;justify-content: center;align-items: center;" >
 				        <div class="form-group">
 			                <label>Bayar</label>
+	                		<a class="btn btn-app btn-block btn-sumbit " onclick="qris_api_getstatus()" style="font-size: 18px">
+	                			<div class="btn-lable">Refresh</div>
+	                			<div class="btn-icon">
+	                				<img src="<?= theme() ?>images/qris_only.png" class="tombolIcon"	 alt="">
+	                			</div>
+		  
+				              </a>
+						</div>
+				        <div class="form-group">
+			                <label>Bayar</label>
 	                		<a class="btn btn-app btn-block btn-sumbit bg-teal" onclick="LoadingQRIS()" style="font-size: 18px">
 	                			<div class="btn-lable">Bayar Dengan</div>
 	                			<div class="btn-icon">
@@ -505,3 +533,25 @@ function OpenMotor() {
     <!-- /.modal-dialog -->
 </div>
 
+	<div class="modal fade " id="modal-notifikasi-berhasil">
+    <div class="modal-dialog ">
+        <div class=" modal-content">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="box box-primary box-solid " style="border-radius: 5px">
+                    <div class="box-body box-bayar">
+                        <h3 align="center" class="box-title notif-title ">
+                        </h3>
+                                <img src="<?= theme() ?>images/success-icon-10.png" class="logoBayar" alt="">
+                        <div class="notif-Teks" style="text-align: center;"></div>
+                            
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

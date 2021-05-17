@@ -147,6 +147,7 @@ function OnlineMobil() {
   						buton.removeClass('btn-success');
   						buton.addClass('btn-danger');
                         buton.html('<i class="fa fa-power-off"></i>');
+                        OnlineMobil();
                     }
                 });
 }
@@ -192,6 +193,7 @@ function OnlineMobil() {
   						buton.removeClass('btn-success');
   						buton.addClass('btn-danger');
                         buton.html('<i class="fa fa-power-off"></i>');
+                    OnlineMotor()
                     }
                 });
 	            }
