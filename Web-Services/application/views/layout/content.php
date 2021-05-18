@@ -42,7 +42,14 @@
 	}
 </style>
 <script type="text/javascript">
+   
+
+
+
+
 	$( document ).ready(function() {
+// OnlineMobil() ;
+// OnlineMotor();
 	setTimeout(()=>{
 	// OnlineMobil();
 	// OnlineMotor();
@@ -121,15 +128,26 @@ function OnlineMobil() {
 
                     },
                     success: function(response) {
+                    		<?php  
+                    	if (level() == 1) { ?>
+								window.focus()
+                    		<?php }
+                    		?>
   						console.log(response);
                         Informasi.html(GagalOnline);
                     },
                     complete: function() {
                         Informasi.html(GagalOnline);
+                        <?php  
+                    	if (level() == 1) { ?>
+								window.focus()
+                    		<?php }
+                    		?>
         	  						buton.removeAttr('disabled');
   						buton.removeClass('btn-success');
   						buton.addClass('btn-danger');
                         buton.html('<i class="fa fa-power-off"></i>');
+                        OnlineMobil();
                     }
                 });
 }
@@ -158,16 +176,28 @@ function OnlineMobil() {
                     success: function(response) {
   						console.log(response);
                         Informasi.html(GagalOnline);
+                        <?php  
+                    	if (level() == 1) { ?>
+								window.focus()
+                    		<?php }
+                    		?>
                     },
                     complete: function() {
+                    	<?php  
+                    	if (level() == 1) { ?>
+								window.focus()
+                    		<?php }
+                    		?>
                         Informasi.html(GagalOnline);
         	  						buton.removeAttr('disabled');
   						buton.removeClass('btn-success');
   						buton.addClass('btn-danger');
                         buton.html('<i class="fa fa-power-off"></i>');
+                    OnlineMotor()
                     }
                 });
 	            }
+
 </script>
 <?php $urls = $this->uri->segment(2) ?>
 <div class="row">

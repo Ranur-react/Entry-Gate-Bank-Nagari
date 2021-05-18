@@ -12,7 +12,7 @@
 					<li><a href="#">Lits Kendaraan Masuk</a></li>
 				</ul>
 			</li>
-		<li class="<?= $urls == "parkir" ? "active" : null ?>"><a href="<?= site_url('parkir') ?>"><i class="fa fa-car"></i> Kasir Parkir</a></li>
+		<li class="<?= $urls == "parkir" ? "active" : null ?>"><a target="blank" href="<?= site_url('parkir') ?>"><i class="fa fa-car"></i> Kasir Parkir</a></li>
 		<?php } else if (level() == 2) { ?>
 			<li class="<?= $urls == "tiket" ? "active" : null ?>"><a href="<?= site_url('tiket') ?>"><i class="fa fa-qrcode"></i> Order Tiket</a></li>
 			<li class="<?= $urls == "parkir" ? "active" : null ?>"><a href="<?= site_url('parkir') ?>"><i class="fa fa-car"></i> Kasir Parkir</a></li>

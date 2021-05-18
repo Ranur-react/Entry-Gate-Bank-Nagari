@@ -8,10 +8,10 @@ function PrintBarcode($SerialEntry,$connfig)
 	Write($connfig,'PR5
  ____________________________________________
 |                                            |
-|          PARKIR ISTANO PAGARUYUANG         |
+|  PARKIR "MOBIL" ISTANO PAGARUYUANG         |
 |____________________________________________|
  Parkir Tanggal : '.$dateGet.' Pukul:'.$TimeGet.' WIB
-PR5@hPwfHkI{A'.$SerialEntry.'
+PR0@hPwfHkI{A'.$SerialEntry.'
  
    *** Harap Tiket ini Tidak Dihilangkan **** 
 VB
