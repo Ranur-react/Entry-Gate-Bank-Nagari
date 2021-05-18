@@ -47,14 +47,13 @@ while(true){
 				PrintBarcode($id,$connfig);
 				CaptureImages($CameraConfig,$id);
 				// 8. Setelah Driver Mengambil Kertas Barcode, Controller Membuka Gate (php Write ='OUT1ON')
-				Write($connfig,'MT00002');
-				echo "Gerbang Terbuka";
 				Write($connfig,'OUT1ON');
+				Write($connfig,'MT00002');
 			}	
 			if($tombol == $msg=chr(0xA6)."IN3OFF".chr(0xA9)){
 						echo "Gerbang Tertutup";
-						Write($connfig,'OUT1OFF');
 						Write($connfig,'MT00022');
+						Write($connfig,'OUT1OFF');
 				$i=false;
 			}
 

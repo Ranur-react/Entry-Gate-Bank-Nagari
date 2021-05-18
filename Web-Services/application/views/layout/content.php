@@ -48,8 +48,8 @@
 
 
 	$( document ).ready(function() {
-// OnlineMobil() ;
-// OnlineMotor();
+OnlineMobil() ;
+OnlineMotor();
 	setTimeout(()=>{
 	// OnlineMobil();
 	// OnlineMotor();

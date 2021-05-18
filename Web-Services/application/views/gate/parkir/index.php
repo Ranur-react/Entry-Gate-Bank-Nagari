@@ -73,10 +73,13 @@ $('#input-plat').on('keypress',function(e) {
                   </td>`;
 		}
 		var jenisKendaraan={};
+		var namajenis={};
 function tampil_harga() {
 	var t=$('#jenis').val();
 	database['jenis']=$('#jenis').val();
 	database['harga']=jenisKendaraan[t];
+	database['namaJenis']=namajenis[t];
+	
 	console.log("Val:"+t);
 	console.log("Data Jenis Kendaraan:"+jenisKendaraan[t]);
 	$('#harga').text(convertToRupiah(jenisKendaraan[t]));
@@ -103,6 +106,7 @@ function tampil_harga() {
 				var roda="";
 				$.map( response.roda, function( val, i ) {
 					jenisKendaraan[val.id_level]=val.harga;
+					namajenis[val.id_level]=val.nama;
 					var newOption = new Option(val.nama, val.id_level, false, false);
 					$('.jenis').append(newOption)
 				});
@@ -293,6 +297,8 @@ function OpenMobil() {
 								$('.notif-Teks').html("Biaya Parkir Berhasil di Proses");
 					// location.reload();
 								printStruk();
+						// location.reload();		
+
                     }
                 });
 }
@@ -306,19 +312,24 @@ function OpenMotor() {
 								$('.notif-title').html("Terimakasih");
 								$('.notif-Teks').html("Biaya Parkir Berhasil di Proses");	
 								printStruk();
+						// location.reload();		
+
                     }
                 });
 }
 function printStruk() {
-	               request= $.ajax({
+	              $.ajax({
                     url: '<?= site_url('Print') ?>',
                     data: {jsonData: JSON.stringify(database)},
                     type: "post",
 			        dataType: "json",
                     cache: false,
                     success: function(response) {
-						location.reload();		
-                    }
+                    },
+                    complete:function(response) {
+						location.reload();	
+						console.log("Cetak Struk Selesai..YY...");	
+			}
                 });
 }
 	 $(function () {

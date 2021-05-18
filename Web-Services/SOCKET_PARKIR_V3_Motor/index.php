@@ -48,7 +48,6 @@ while(true){
 				CaptureImages($CameraConfig,$id);
 				// 8. Setelah Driver Mengambil Kertas Barcode, Controller Membuka Gate (php Write ='OUT1ON')
 				Write($connfig,'MT00002');
-				echo "Gerbang Terbuka";
 				Write($connfig,'OUT1ON');
 			}	
 			if($tombol == $msg=chr(0xA6)."IN3OFF".chr(0xA9)){
