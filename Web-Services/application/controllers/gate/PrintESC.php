@@ -9,7 +9,13 @@ class PrintESC extends CI_Controller
     }
      public function index()
     {
-
+        $database = json_decode($this->input->post('jsonData'));
+        $noplat=$database->noplat;
+        $notiket=$database->idkarcis;
+        $jenis=$database->jenis;
+        $harga=$database->harga;
+        $pembayaran=$database->pembayaran;
+        $keterangan=$database->keterangan;
         // membuat connector printer ke shared printer bernama "printer_a" (yang telah disetting sebelumnya)
             date_default_timezone_set("Asia/Jakarta");
     $date=date_create();
@@ -28,10 +34,10 @@ class PrintESC extends CI_Controller
   --------------------------------------------
     Tanggal : $dateGet     Pukul $TimeGet WIB  
 
-   No. Trx     : 
-   Noplat      :
-   Keterangan  :
-   Harga       : Rp.
+   No. Trx     : $notiket
+   Noplat      : $noplat
+   Keterangan  : $keterangan
+   Harga       : Rp. $harga
 
   ____________________________________________
         Terimakasi Atas Kunjungannya 
@@ -48,7 +54,7 @@ class PrintESC extends CI_Controller
  // $tux = EscposImage::load("resources/tux.png", false);
     
  //    $printer -> graphics($tux);
-        $printer -> text("Regular Tux.\n");
+        $printer -> text("($pembayaran)\n");
         $printer -> feed();
 
         $printer->text($designStruk);

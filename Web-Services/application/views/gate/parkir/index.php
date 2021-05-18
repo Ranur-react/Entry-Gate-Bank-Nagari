@@ -291,7 +291,8 @@ function OpenMobil() {
                     $('#modal-notifikasi-berhasil').modal('show');
 								$('.notif-title').html("Terimakasih");
 								$('.notif-Teks').html("Biaya Parkir Berhasil di Proses");
-					location.reload();
+					// location.reload();
+								printStruk();
                     }
                 });
 }
@@ -304,8 +305,19 @@ function OpenMotor() {
                     $('#modal-notifikasi-berhasil').modal('show');
 								$('.notif-title').html("Terimakasih");
 								$('.notif-Teks').html("Biaya Parkir Berhasil di Proses");	
-					location.reload();
-								
+								printStruk();
+                    }
+                });
+}
+function printStruk() {
+	               request= $.ajax({
+                    url: '<?= site_url('Print') ?>',
+                    data: {jsonData: JSON.stringify(database)},
+                    type: "post",
+			        dataType: "json",
+                    cache: false,
+                    success: function(response) {
+						location.reload();		
                     }
                 });
 }
