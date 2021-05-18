@@ -2,8 +2,8 @@
 #include <Ethernet.h>
 #include <ArduinoJson.h>
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED }; 
-char server[]="192.168.100.100"; //Domain atau Address WEBSERVER
-String host="Host: 192.168.100.100"; //Domain atau Address WEBSERVER
+char server[]="192.168.137.1"; //Domain atau Address WEBSERVER
+String host="Host: 192.168.137.1"; //Domain atau Address WEBSERVER
 //IPAddress ip(192,168,137,2);//IP Address Ethernet Shield
 IPAddress  localBoardIP;
 EthernetClient client;
@@ -39,7 +39,7 @@ void GetFromDb(String value){
      
     if (client.connect(server, 80)) {    
         Cetak("S","POST Connect");
-        client.println("POST /banknagari/Entry-Gate-Bank-Nagari/GATE_TIKET/index.php HTTP/1.1");
+        client.println("POST /Entry-Gate-Bank-Nagari/GATE_TIKET/index.php HTTP/1.1");
         client.println(host);
         client.println("Content-Type: application/x-www-form-urlencoded");
         client.println("Connection: close");
