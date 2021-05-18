@@ -11,6 +11,32 @@ class PrintESC extends CI_Controller
     {
 
         // membuat connector printer ke shared printer bernama "printer_a" (yang telah disetting sebelumnya)
+            date_default_timezone_set("Asia/Jakarta");
+    $date=date_create();
+    $dateGet=date_format($date,"d M Y");
+    $TimeGet=date_format($date,"H:i");
+        $designStruk='
+ 
+         *           *               *       
+        ***        *****           ***       
+       ******    *********      ******       
+      *********************************      
+          ISTANO BASA PAGARUYUANG            
+      DISPARPORA KABUPATEN TANAH DATAR       
+  --------------------------------------------
+          ~ STRUK PEMBAYARAN PARKIR ~         
+  --------------------------------------------
+    Tanggal : $dateGet     Pukul $TimeGet WIB  
+
+   No. Trx     : 
+   Noplat      :
+   Keterangan  :
+   Harga       : Rp.
+
+  ____________________________________________
+        Terimakasi Atas Kunjungannya 
+    ';
+
         $connector = new Escpos\PrintConnectors\WindowsPrintConnector("BPTMU-B250");
  
         // membuat objek $printer agar dapat di lakukan fungsinya
@@ -22,10 +48,10 @@ class PrintESC extends CI_Controller
  // $tux = EscposImage::load("resources/tux.png", false);
     
  //    $printer -> graphics($tux);
-    $printer -> text("Regular Tux.\n");
-    $printer -> feed();
+        $printer -> text("Regular Tux.\n");
+        $printer -> feed();
 
-        $printer->text("Ini teks berjarak 10 dari kiri (Margin left) \n");
+        $printer->text($designStruk);
         $printer->text("\n");
  
  
