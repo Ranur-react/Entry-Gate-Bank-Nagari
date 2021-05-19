@@ -167,7 +167,7 @@ void loop() {
     kode = Serial1.readString();
     Serial.print("Jumlah karakter Chipper Teks");
     Serial.print(kode.length());
-    if(kode.length()>=65){
+    if(kode.length()>=62){
       Serial.println(kode);
 pindaiUkurantubuh();
     break;
