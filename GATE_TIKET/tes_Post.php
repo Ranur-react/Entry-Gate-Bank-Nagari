@@ -35,7 +35,8 @@ if($data['levelValue'] =='0001' & $adult=='true'){
 							 $time_serial=timeFormat($data['dateValue']);
 							 if (dateEqualas($date_serial)) {
 							 	SensorCountHumans($conn,$plainteks);
-								mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '05')");
+								mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '72')");
+								mysqli_query($conn2,"INSERT INTO `tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '72')");
 							 	# code...
 								echo "true";	
 							 }else{
@@ -56,7 +57,9 @@ if($data['levelValue'] =='0001' & $adult=='true'){
 							 $time_serial=timeFormat($data['dateValue']);
 							 if (dateEqualas($date_serial)) {
 							 	SensorCountHumans($conn,$plainteks);
-								mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '05')");
+								mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '72')");
+								mysqli_query($conn2,"INSERT INTO `tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '72')");
+
 							 	# code...
 								echo "true";	
 							 }else{
@@ -81,7 +84,9 @@ else if($data['levelValue'] =='0002' & $adult=='true'){
 							 $date_serial=dateFormat($data['dateValue']);
 							 $time_serial=timeFormat($data['dateValue']);
 							 if (dateEqualas($date_serial)) {
-								mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '05')");
+								mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '72')");
+								mysqli_query($conn2,"INSERT INTO `tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '72')");
+
 							 	# code...
 								echo "true";	
 							 }else{
@@ -105,7 +110,9 @@ else if($data['levelValue'] =='0003' & $adult=='true'){
 							 $date_serial=dateFormat($data['dateValue']);
 							 $time_serial=timeFormat($data['dateValue']);
 							 if (dateEqualas($date_serial)) {
-								mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '05')");
+								mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '72')");
+								mysqli_query($conn2,"INSERT INTO `tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '72')");
+
 							 	# code...
 								echo "true";	
 							 }else{
@@ -127,7 +134,9 @@ else if($data['levelValue'] =='0003' & $adult=='true'){
 							 $date_serial=dateFormat($data['dateValue']);
 							 $time_serial=timeFormat($data['dateValue']);
 							 if (dateEqualas($date_serial)) {
-								mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '05')");
+								mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '72')");
+								mysqli_query($conn2,"INSERT INTO `tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '72')");
+								
 							 	# code...
 								echo "true";	
 							 }else{
