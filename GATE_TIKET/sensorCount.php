@@ -1,7 +1,7 @@
 <?php 
 
  function SensorCountHumans($coneksi,$plainteks) {
- 	mysqli_query($coneksi,"INSERT INTO `db_banknagari`.`tb_hitung_dewasa` (`notiket`, `date`) VALUES ('$plainteks', NOW());");
+ 	mysqli_query($coneksi,"INSERT INTO `tb_hitung_dewasa` (`notiket`, `date`) VALUES ('$plainteks', NOW());");
 
 	// $qry = mysqli_fetch_array(mysqli_query($coneksi,"SELECT SUM(`tb_human_entry`.`detect_dewasa`) AS rc_dewasa FROM `tb_human_entry`;"));
 	// $adult_before=$qry['rc_dewasa'];
