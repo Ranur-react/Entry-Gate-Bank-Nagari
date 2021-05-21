@@ -34,7 +34,7 @@ while(true){
 
 				// 4. Generate ID Parkir
 			
-				$id= GenerateID_Entry("02");
+				$id= GenerateID_Entry($connfig['idparkir']);
 
 				$CameraConfig['folder']=$id;
 				// 5. KAMERA Melakukan Capture Hasil Capture Insert ke Folder dengan folder name 'ID' (php Capture_Vehcle())
