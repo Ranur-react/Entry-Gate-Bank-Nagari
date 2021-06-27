@@ -7,13 +7,14 @@
         		database['idkarcis']=null;
         		database['noplat']=null;
         		database['jenis']=null;
+        		database['idgate']=null;
         		database['harga']=null;
         		database['keterangan']=null;
         		database['Timestamp']=null;
 				database['pembayaran']=null;
 
 
-
+ 
 	$( document ).ready(function() {
 		$( '#modal-notifikasi-berhasil' )
    .on( function(e) {
@@ -106,6 +107,10 @@ function tampil_harga() {
 				var roda="";
 				$.map( response.roda, function( val, i ) {
 					jenisKendaraan[val.id_level]=val.harga;
+					database['idgate']=val.id_gate;
+					console.log("Id Gate yang didapat")
+					console.log(database['idgate'])
+
 					namajenis[val.id_level]=val.nama;
 					var newOption = new Option(val.nama, val.id_level, false, false);
 					$('.jenis').append(newOption)
@@ -176,6 +181,8 @@ function qris_api() {
 	var hash = CryptoJS.HmacSHA256(body+":"+Timestamp, key);
 	var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);;
 		database['signature']=hashInBase64;
+		console.log("Cetak isi Database")
+		console.log(database)
 		$.ajax({
 			type: "post",
 			url: "<?= site_url('qrisapi') ?>",
@@ -188,7 +195,7 @@ function qris_api() {
 	        },
 			success: function(response) {
 				if (response.state) {
-					if (response.messages.rc=='00') {
+					if (response.messages.rc=='88') {
                         $('.LoadIcon').html('<i class="fa fa-check-circle text-green"></i> Pembayaran Berhasil selesai');
                         nontunai()
 					}else{
@@ -225,14 +232,21 @@ function qris_api() {
 			success: function(response) {
 				// console.log("Array:");
 				// console.log(response.status);
+							console.log("response   . . . .")
+							console.log(response)
 				if (!response.status=="true") {
 					$('.LoadIcon').html('<i class="fa fa-plug text-yellow"></i>Eror Get Status (Messages: '+response.messages+')');
 				}else{
-						if (response.messages.rc=='00') {
+						if (response.messages.rc=='88') {
 	                        $('.LoadIcon').html('<i class="fa fa-check-circle text-red"></i> Pembayaran Berhasil selesai');
 	                        nontunai()
 						}else{
-	                        $('.LoadIcon').html('<i class="fa fa-close  text-red"></i> Pembayaran BATAL Dilakukan!! (code: '+response.messages.rc+' messages: '+response.messages.message+')');
+							if(!response.status=='false'){
+								 $('.LoadIcon').html('<i class="fa fa-close  text-red"></i> Eror!! (messages: '+response.messages+')');
+							}else{
+
+	                        $('.LoadIcon').html('<i class="fa fa-close  text-red"></i> Pembayaran Gagal Dilakukan!! (code: '+response.messages.rc+' messages: '+response.messages.message+')');
+							}
 						}
 					}
 				}

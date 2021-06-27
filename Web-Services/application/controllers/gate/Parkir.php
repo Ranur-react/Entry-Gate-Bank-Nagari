@@ -94,8 +94,11 @@ class Parkir extends CI_Controller
 					$body= json_encode($array);
 				 $timestamp=$database->Timestamp;
 				 $signature=$database->signature;
-		$strurl= $this->Mconfig->IP_Server_Gateway_API_BN('01');
+				 $idGate=$database->idgate;
+		$strurl= $this->Mconfig->IP_Server_Gateway_API_BN($idGate);
+		$strurl2= $this->Mconfig->clientID();
 				 $ip=$strurl['value'];
+				 $clientid=$strurl2['value'];
 				$curl = curl_init();
 				curl_setopt_array($curl, array(
 				  CURLOPT_PORT => "8080",
@@ -103,12 +106,13 @@ class Parkir extends CI_Controller
 				  CURLOPT_RETURNTRANSFER => true,
 				  CURLOPT_ENCODING => "",
 				  CURLOPT_MAXREDIRS => 10,
-				  CURLOPT_TIMEOUT => 90,
+				  CURLOPT_TIMEOUT => 65,
 				  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 				  CURLOPT_CUSTOMREQUEST => "POST",
 				  CURLOPT_POSTFIELDS => $body,
 				  CURLOPT_HTTPHEADER => array(
-				    "Authorization: BN OTA5",
+				    // "Authorization: BN OTA5",
+				    "Authorization: $clientid",
 				    "Cache-Control: no-cache",
 				    "Content-Type: application/x-www-form-urlencoded",
 				    "Postman-Token: ac251dbf-3b51-4ebb-aa22-d9337674f391",
@@ -141,8 +145,11 @@ class Parkir extends CI_Controller
 					$body= json_encode($array);
 				 $timestamp=$database->Timestamp;
 				 $signature=$database->signature;
-				$strurl= $this->Mconfig->IP_Server_Gateway_API_BN('01');
-				 $ip=$strurl['value'];
+					 $idGate=$database->idgate;
+		$strurl= $this->Mconfig->IP_Server_Gateway_API_BN($idGate);
+		$strurl2= $this->Mconfig->clientID();
+		 $ip=$strurl['value'];
+		 $clientid=$strurl2['value'];
 				$curl = curl_init();
 				curl_setopt_array($curl, array(
 				  CURLOPT_PORT => "8080",
@@ -155,7 +162,8 @@ class Parkir extends CI_Controller
 				  CURLOPT_CUSTOMREQUEST => "POST",
 				  CURLOPT_POSTFIELDS => $body,
 				  CURLOPT_HTTPHEADER => array(
-				    "Authorization: BN OTA5",
+				    // "Authorization: BN OTA5",
+				    "Authorization: $clientid",
 				    "Cache-Control: no-cache",
 				    "Content-Type: application/x-www-form-urlencoded",
 				    "Postman-Token: ac251dbf-3b51-4ebb-aa22-d9337674f391",

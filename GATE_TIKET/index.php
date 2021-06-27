@@ -23,7 +23,10 @@ include 'dateformat.php';
 						if (!empty($qry['id_denc_serial'])) {
 							mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku karena sudah digunakan','already_used', '05',now());");
 						echo "false";	
-						}else{
+						}else if($data['levelValue']=='0098'){
+								echo "true";	
+						}
+						else{
 							$level=$data['levelValue'];
 							$nomorbuktiValue=$data['nomorbuktiValue'];
 							 $date_serial=dateFormat($data['dateValue']);

@@ -13,6 +13,10 @@ class Mconfig extends CI_Model
 	{
 		return $this->db->query("SELECT*FROM `tb_config` WHERE `options`='apikey' ")->row_array();
 	}
+		public function clientID()
+	{
+		return $this->db->query("SELECT*FROM `tb_config` WHERE `options`='apiauthorization' ")->row_array();
+	}
 
 }
 ?>

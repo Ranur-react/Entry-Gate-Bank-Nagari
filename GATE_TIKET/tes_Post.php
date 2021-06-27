@@ -119,6 +119,8 @@ else if($data['levelValue'] =='0003' & $adult=='true'){
 						}
 //end esekusi
 
-}
+}else if($data['levelValue']=='0098'){
+								echo "true";	
+						}
 
  ?>
