@@ -22,8 +22,8 @@ $connfig['idparkir']=$idcek['value'];
 	socket_connect($connfig['socket'], $connfig['host'],$connfig['port']);
 
 	//Koneksi Kamera
-	$CameraConfig['ip']='192.168.137.62';
+	$CameraConfig['ip']='192.168.137.61';
 	$CameraConfig['username']='admin';
 	$CameraConfig['password']='Hikvision!!';
-	$CameraConfig['folder']='capture';
+	$CameraConfig['folder']='capturex';
  ?>

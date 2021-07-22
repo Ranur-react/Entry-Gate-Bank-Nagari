@@ -1,1 +1,1 @@
-<img src="http://192.168.1.64/ISAPI/Streaming/channels/101/picture">
+<img src="http://192.168.1.63/ISAPI/Streaming/channels/101/picture">

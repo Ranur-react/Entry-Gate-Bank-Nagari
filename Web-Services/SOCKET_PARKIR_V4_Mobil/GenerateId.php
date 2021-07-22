@@ -8,7 +8,7 @@
 	$dateGetM=date_format($date,"m");
 	$dateGetD=date_format($date,"d");
 	$TimeGet=date_format($date,"H:i:s");
-	return $v."99".rand(1001, 8888)."99".$dateGet."99".date_format($date,"H").date_format($date,"i");
+	return "99".rand(1001, 8888)."99".$dateGet."99".date_format($date,"H").date_format($date,"i");
 }
 
  ?>

@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?= theme() ?>plugins/span_but/style.css">
+<link rel="stylesheet" href="<?= theme() ?>plugins/span_but/style.css">  
 <script src="<?= theme() ?>plugins/span_but/animated.js"></script>
 
 

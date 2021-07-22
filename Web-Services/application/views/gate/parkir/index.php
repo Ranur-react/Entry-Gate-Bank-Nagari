@@ -7,6 +7,7 @@
         		database['idkarcis']=null;
         		database['noplat']=null;
         		database['jenis']=null;
+        		database['jenisid']=null;
         		database['harga']=null;
         		database['keterangan']=null;
         		database['Timestamp']=null;
@@ -107,6 +108,11 @@ function tampil_harga() {
 				$.map( response.roda, function( val, i ) {
 					jenisKendaraan[val.id_level]=val.harga;
 					namajenis[val.id_level]=val.nama;
+					console.log("Jenis Gate ----------------");
+					database['jenisid']=val.id_gate;
+					console.log(database['jenisid'])
+					console.log('--------- dari data -------')
+				 	console.log(val)
 					var newOption = new Option(val.nama, val.id_level, false, false);
 					$('.jenis').append(newOption)
 				});
@@ -188,7 +194,7 @@ function qris_api() {
 	        },
 			success: function(response) {
 				if (response.state) {
-					if (response.messages.rc=='00') {
+					if (response.messages.rc=='00' || response.messages.rc=='88') {
                         $('.LoadIcon').html('<i class="fa fa-check-circle text-green"></i> Pembayaran Berhasil selesai');
                         nontunai()
 					}else{
@@ -228,7 +234,7 @@ function qris_api() {
 				if (!response.status=="true") {
 					$('.LoadIcon').html('<i class="fa fa-plug text-yellow"></i>Eror Get Status (Messages: '+response.messages+')');
 				}else{
-						if (response.messages.rc=='00') {
+						if (response.messages.rc=='00' || response.messages.rc=='88') {
 	                        $('.LoadIcon').html('<i class="fa fa-check-circle text-red"></i> Pembayaran Berhasil selesai');
 	                        nontunai()
 						}else{

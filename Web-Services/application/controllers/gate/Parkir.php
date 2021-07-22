@@ -94,7 +94,8 @@ class Parkir extends CI_Controller
 					$body= json_encode($array);
 				 $timestamp=$database->Timestamp;
 				 $signature=$database->signature;
-		$strurl= $this->Mconfig->IP_Server_Gateway_API_BN('01');
+				 $id_gate=$database->jenisid;
+		$strurl= $this->Mconfig->IP_Server_Gateway_API_BN($id_gate);
 				 $ip=$strurl['value'];
 				$curl = curl_init();
 				curl_setopt_array($curl, array(
@@ -108,7 +109,9 @@ class Parkir extends CI_Controller
 				  CURLOPT_CUSTOMREQUEST => "POST",
 				  CURLOPT_POSTFIELDS => $body,
 				  CURLOPT_HTTPHEADER => array(
-				    "Authorization: BN OTA5",
+				   // "Authorization: BN OTA5",
+				    "Authorization: BN MDAwNg==",
+
 				    "Cache-Control: no-cache",
 				    "Content-Type: application/x-www-form-urlencoded",
 				    "Postman-Token: ac251dbf-3b51-4ebb-aa22-d9337674f391",
@@ -123,6 +126,8 @@ class Parkir extends CI_Controller
 				if ($err) {
 						$json['state']=false;
 						$json['messages']=$err;
+						$json['response']=json_decode($response);
+
 				} else {
 				  // echo $response;
 					  $json['state']=true;
@@ -141,7 +146,8 @@ class Parkir extends CI_Controller
 					$body= json_encode($array);
 				 $timestamp=$database->Timestamp;
 				 $signature=$database->signature;
-				$strurl= $this->Mconfig->IP_Server_Gateway_API_BN('01');
+				$id_gate=$database->jenisid;
+		$strurl= $this->Mconfig->IP_Server_Gateway_API_BN($id_gate);
 				 $ip=$strurl['value'];
 				$curl = curl_init();
 				curl_setopt_array($curl, array(
@@ -155,7 +161,8 @@ class Parkir extends CI_Controller
 				  CURLOPT_CUSTOMREQUEST => "POST",
 				  CURLOPT_POSTFIELDS => $body,
 				  CURLOPT_HTTPHEADER => array(
-				    "Authorization: BN OTA5",
+				   // "Authorization: BN OTA5",
+				    "Authorization: BN MDAwNg==",
 				    "Cache-Control: no-cache",
 				    "Content-Type: application/x-www-form-urlencoded",
 				    "Postman-Token: ac251dbf-3b51-4ebb-aa22-d9337674f391",

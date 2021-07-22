@@ -20,7 +20,7 @@ $qry = mysqli_fetch_array(mysqli_query($conn,"SELECT*FROM `tb_config` WHERE `tb_
 	socket_connect($connfig['socket'], $connfig['host'],$connfig['port']);
 
 	//Koneksi Kamera
-	$CameraConfig['ip']='192.168.137.61';
+	$CameraConfig['ip']='192.168.137.62';
 	$CameraConfig['username']='admin';
 	$CameraConfig['password']='Hikvision!!';
 	$CameraConfig['folder']='capture';
