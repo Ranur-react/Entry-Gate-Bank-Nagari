@@ -1,6 +1,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/hmac-sha256.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/enc-base64.min.js"></script>
+<script>
+ 
+</script>
 <script type="text/javascript">
 // Global Variabel
 		var database={};
@@ -33,7 +36,7 @@
 			})
 $('#input-karcis').on('keypress',function(e) {
     if(e.which == 13) {
-        Diall()
+        //Diall()
     }
 });
 $('#input-plat').on('keypress',function(e) {
@@ -418,7 +421,7 @@ function printStruk() {
 					    	<div class="col-md-3">
 						        <div class="form-group karciskolom">
 					                <label><i class="fa fa-ticket"></i> Input Kode Karcis</label>
-			                            <input  oninput="//Diall()" autofocus='true'  type="text" name="kode_karcis" value="" placeholder="Kode Karcis Parkir" id="input-karcis" class="form-control">
+			                            <input  oninput="Diall()" autofocus='true'  type="text" name="kode_karcis" value="" placeholder="Kode Karcis Parkir" id="input-karcis" class="form-control">
 										<div class="medium-Info">*</div>
 			                            
 								</div>
