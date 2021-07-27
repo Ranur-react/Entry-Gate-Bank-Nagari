@@ -10,6 +10,5 @@
 	$TimeGet=date_format($date,"H:i:s");
 	return "9".rand(01, 88)."9".$dateGet."9".date_format($date,"H").date_format($date,"i");
 }
-//echo GenerateID_Entry("")
 
  ?>

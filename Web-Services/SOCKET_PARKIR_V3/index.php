@@ -34,7 +34,7 @@ while(true){
 
 				// 4. Generate ID Parkir
 			
-				$id= GenerateID_Entry($connfig['idparkir']);
+				$id= GenerateID_Entry('01');
 
 				$CameraConfig['folder']=$id;
 				// 5. KAMERA Melakukan Capture Hasil Capture Insert ke Folder dengan folder name 'ID' (php Capture_Vehcle())
@@ -43,16 +43,17 @@ while(true){
 				mysqli_query($conn, "INSERT INTO `tb_entry` (`id_entry`, `gate_id`,date) VALUES ('$id', '01',now());");
 				// 7. PHP mengirim Perintah Print Barcode (php PrintBarcode('Serial-Entry'))
 				// 5. KAMERA Melakukan Capture Hasil Capture Insert ke Folder dengan folder name 'ID' (php Capture_Vehcle())
-				
-				PrintBarcode($id,$connfig);
 				CaptureImages($CameraConfig,$id);
+				PrintBarcode($id,$connfig);
+				
 				// 8. Setelah Driver Mengambil Kertas Barcode, Controller Membuka Gate (php Write ='OUT1ON')
+				
+				Write($connfig,'MT00002'); 
 				Write($connfig,'OUT1ON');
-				Write($connfig,'MT00002');
 			}	
 			if($tombol == $msg=chr(0xA6)."IN3OFF".chr(0xA9)){
 						echo "Gerbang Tertutup";
-						Write($connfig,'MT00022');
+						Write($connfig,'MT0006');
 						Write($connfig,'OUT1OFF');
 				$i=false;
 			}

@@ -4,7 +4,13 @@
 <script>
  
 </script>
+
 <script type="text/javascript">
+ document.addEventListener('keydown', function(event) {
+    if( event.keyCode == 13 || event.keyCode == 17 || event.keyCode == 74 )
+      event.preventDefault();
+  console.log("Sesutau terjadi pada Barcode reader");
+  });
 // Global Variabel
 		var database={};
         		database['idkarcis']=null;
@@ -24,7 +30,7 @@
        console.log(e);
    })
 		  $('body').on('keypress', function (e) {
-			    console.log('I have been pressed', e);
+			    // console.log('I have been pressed', e);
 			    if ( e.shiftKey && ( e.which === 81 ) ) {
 				  console.log( "You pressed shiftKey + Q" );
 				  LoadingQRIS()
@@ -34,11 +40,12 @@
 				  tunai()
 				}
 			})
-$('#input-karcis').on('keypress',function(e) {
-    if(e.which == 13) {
-        //Diall()
-    }
-});
+// $('#input-karcis').on('keypress',function(e) {
+//     if(e.which == 13) {
+//         Diall()
+//     }
+// });
+
 $('#input-plat').on('keypress',function(e) {
     if(e.which == 13) {
         $('#keterangan').focus();
@@ -47,10 +54,9 @@ $('#input-plat').on('keypress',function(e) {
 	});
 
 		function Diall() { 
-		
 			var uriA=`http://admin:Hikvision!!@192.168.1.61/ISAPI/Streaming/channels/101/picture`;	
 			var urlB='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png';
-			console.log(uriA);
+			// console.log(uriA);
 			$(".StreamIMG").attr("src",urlB);
 			$(".StreamA").attr("src",urlB);
 			$(".StreamA").attr("src",uriA);
@@ -58,6 +64,9 @@ $('#input-plat').on('keypress',function(e) {
 			input_karcis();
 
 		}
+		function TesCAllD() {
+				Diall()
+			}
 		function viewCaptureLoad(kode,urlstream,folderImages,date) {
 			return `               
                   <td>
@@ -345,6 +354,9 @@ function printStruk() {
     //Initialize Select2 Elements
     $('.select2').select2() ;
 })
+	 function tes() {
+	 	TesCAllD()
+	 }
 </script>
 <style type="text/css">
 	.form-control{
@@ -421,7 +433,7 @@ function printStruk() {
 					    	<div class="col-md-3">
 						        <div class="form-group karciskolom">
 					                <label><i class="fa fa-ticket"></i> Input Kode Karcis</label>
-			                            <input  oninput="Diall()" autofocus='true'  type="text" name="kode_karcis" value="" placeholder="Kode Karcis Parkir" id="input-karcis" class="form-control">
+			                            <input  autofocus='true' onchange="" oninput="tes()"  type="text" name="kode_karcis" value="" placehonolder="Kode Karcis Parkir" id="input-karcis" class="form-control">
 										<div class="medium-Info">*</div>
 			                            
 								</div>

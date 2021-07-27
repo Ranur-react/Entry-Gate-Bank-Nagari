@@ -7,7 +7,7 @@ function CaptureImages($CameraConfig,$id)
 
 	$login = $CameraConfig['username'];
 	$password = $CameraConfig['password'];
-	$ip=$CameraConfig['ip'];
+	$ip='192.168.137.62';
 	$url = 'http://'.$ip.'/ISAPI/Streaming/channels/101/picture';
 	$target_dir='Capture/'.$id;
 

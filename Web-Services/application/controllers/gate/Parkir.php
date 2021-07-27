@@ -89,18 +89,18 @@ class Parkir extends CI_Controller
 				$json['METOD']="Inquery POST";
 				$database = json_decode($this->input->post('jsonData'));
 				$json['NOTRANS']=$data["NOTRANS"]=$database->idkarcis;
-				 $data["BIAYA"]=$database->harga;
-					$array = array_map('trim', $data );
-					$body= json_encode($array);
-				 $timestamp=$database->Timestamp;
-				 $signature=$database->signature;
-				 $id_gate=$database->jenisid;
-		$strurl= $this->Mconfig->IP_Server_Gateway_API_BN($id_gate);
-				 $ip=$strurl['value'];
+				$data["BIAYA"]=$database->harga;
+				$array = array_map('trim', $data );
+				$body= json_encode($array);
+				$timestamp=$database->Timestamp;
+				$signature=$database->signature;
+				$id_gate=$database->jenisid;
+				$strurl= $this->Mconfig->IP_Server_Gateway_API_BN($id_gate);
+				$ip=$strurl['value'];
 				$curl = curl_init();
 				curl_setopt_array($curl, array(
-				  CURLOPT_PORT => "8080",
-				  CURLOPT_URL => "http://$ip:8080",
+				CURLOPT_PORT => "8080",
+				CURLOPT_URL => "http://$ip:8080",
 				  CURLOPT_RETURNTRANSFER => true,
 				  CURLOPT_ENCODING => "",
 				  CURLOPT_MAXREDIRS => 10,
@@ -180,12 +180,14 @@ class Parkir extends CI_Controller
 						$json['status']="false";
 						$json['state']=false;
 						$json['messages']=$err;
+						$json['response']=json_decode($response);
 				  
 				} else {
 				  // echo $response;
 						$json['status']="true";
 					  $json['state']=true;
 						$json['messages']=json_decode($response);
+						$json['response']=json_decode($response);
 				}
 				  	echo json_encode($json);
 	}

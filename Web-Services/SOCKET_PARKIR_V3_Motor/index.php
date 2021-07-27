@@ -34,7 +34,7 @@ while(true){
 
 				// 4. Generate ID Parkir
 			
-				$id= GenerateID_Entry($connfig['idparkir']);
+				$id= GenerateID_Entry('02');
 
 				$CameraConfig['folder']=$id;
 				// 5. KAMERA Melakukan Capture Hasil Capture Insert ke Folder dengan folder name 'ID' (php Capture_Vehcle())
@@ -53,7 +53,7 @@ while(true){
 			if($tombol == $msg=chr(0xA6)."IN3OFF".chr(0xA9)){
 						echo "Gerbang Tertutup";
 						Write($connfig,'OUT1OFF');
-						Write($connfig,'MT00022');
+						Write($connfig,'MT0006');
 				$i=false;
 			}
 
