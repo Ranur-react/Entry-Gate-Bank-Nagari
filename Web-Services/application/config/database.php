@@ -75,9 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	// 'hostname' => 'localhost',
+	'hostname' => 'maridb-master-bank',
 	'username' => 'root',
-	'password' => '',
+	'password' => 'Padri0@@@',
 	'database' => 'db_banknagari',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
