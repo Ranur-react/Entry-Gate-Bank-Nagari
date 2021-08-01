@@ -16,10 +16,10 @@ class Auth extends CI_Controller
                 # code...
                 redirect('welcome');
             }else if ($this->session->userdata('levelUser')== 3) {
-                redirect('Laporan');
+                redirect('welcome');
             } 
             else{
-                redirect('kasir');
+                redirect('welcome');
             }
         } else {
             $this->load->view('login');

@@ -3,7 +3,7 @@
 	//Koneksi ke DBMS
 	$severname = "localhost";
 	$username = "root";
-	$password = "";
+	$password = "Padri0@@@";
 	$dbname = "db_banknagari";
 
 	$conn = new mysqli($severname, $username, $password, $dbname);
@@ -17,7 +17,7 @@ $idcek = mysqli_fetch_array(mysqli_query($conn,"SELECT*FROM `tb_config` WHERE OP
 $connfig['idparkir']=$idcek['value'];
 	//Koneksi Hardware
 	$connfig['host']=$qry['value'];
-	$connfig['port']=5002;
+	$connfig['port']=5001;
 	$connfig['socket']=socket_create(AF_INET, SOCK_STREAM, 0);
 	socket_connect($connfig['socket'], $connfig['host'],$connfig['port']);
 
@@ -25,5 +25,5 @@ $connfig['idparkir']=$idcek['value'];
 	$CameraConfig['ip']='192.168.137.61';
 	$CameraConfig['username']='admin';
 	$CameraConfig['password']='Hikvision!!';
-	$CameraConfig['folder']='capturex';
+	$CameraConfig['folder']='capture';
  ?>
