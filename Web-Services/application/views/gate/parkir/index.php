@@ -6,6 +6,11 @@
 </script>
 <script type="text/javascript">
 // Global Variabel
+ document.addEventListener('keydown', function(event) {
+    if( event.keyCode == 13 || event.keyCode == 17 || event.keyCode == 74 )
+      event.preventDefault();
+  console.log("Sesutau terjadi pada Barcode reader");
+  });
 		var database={};
         		database['idkarcis']=null;
         		database['noplat']=null;
@@ -61,8 +66,8 @@ $('#input-plat').on('keypress',function(e) {
 		function viewCaptureLoad(kode,urlstream,folderImages,date) {
 			return `               
                   <td>
-                		<a class="StreamA" target="blank" href="<?php echo base_url()?>`+folderImages+`/capture/`+kode+`/sc-1.jpg">
-	                  		<img class="StreamIMG" style="  max-width: 50%;  max-height: auto;border-radius: 20px" src="<?php echo base_url()?>`+folderImages+`/capture/`+kode+`/sc-1.jpg">
+                		<a class="StreamA" target="blank" href="http://localhost/Entry-Gate-Bank-Nagari/Web-Services/`+folderImages+`/capture/`+kode+`/sc-1.jpg">
+	                  		<img class="StreamIMG" style="  max-width: 50%;  max-height: auto;border-radius: 20px" src="http://localhost/Entry-Gate-Bank-Nagari/Web-Services/`+folderImages+`/capture/`+kode+`/sc-1.jpg">
                   		</a>
                   </td>
                   <td>
@@ -90,7 +95,7 @@ function tampil_harga() {
 	$('.totalharga').text(convertToRupiah(jenisKendaraan[t]));
 }
     function input_karcis() {
-    	var data="&kode="+$('#input-karcis').val();
+    	var data="&kode="+$('#input-karcis').val().trim();
     $.ajax({
         url: '<?= site_url('cekkarcis')  ?>',
         type: "post",
@@ -268,24 +273,13 @@ function bayarEsekusi() {
 			success: function(response) {
 				console.log(response)
 				if (response.status) {
-					if (database['jenis']=='roda2') {
-						//Buka Gate Motor
-					// window.location = "<?= base_url() ?>SOCKET_PARKIR_V4_Motor/index.php";
-					  /// wait 3 seconds
-				    setTimeout(function() {
-					OpenMotor();
-				    }, 100);
-					}else{
-						//Buka Gate Mobil
-					// window.location = "<?= base_url() ?>SOCKET_PARKIR_V4_Mobil/index.php";
+					//alert(response.status)
+					printStruk();
+					//alert(database['jenis'])
 					setTimeout(function() {
-					OpenMobil()
-				    }, 100);
-					}
-					// setTimeout(function() {
-					// location.reload(); 
-
-				 //    }, 4000);
+								printStruk();
+					
+				    }, 4000);
 				}else{
 				$('#modal-notifikasi').modal('show');
 				$('.notif-title').html(response.title);
@@ -297,7 +291,7 @@ function bayarEsekusi() {
 }
 function OpenMobil() {
 	               request= $.ajax({
-                    url: '<?= site_url('Exit') ?>',
+                    url: 'http://localhost/Entry-Gate-Bank-Nagari/Web-Services/Exit',
                     type: "post",
                     cache: false,
                     success: function(response) {
@@ -305,39 +299,51 @@ function OpenMobil() {
 								$('.notif-title').html("Terimakasih");
 								$('.notif-Teks').html("Biaya Parkir Berhasil di Proses");
 					// location.reload();
-								printStruk();
-						// location.reload();		
-
+								// printStruk();
+						location.reload();		
+// 
                     }
                 });
 }
 function OpenMotor() {
+
+								// printStruk();
 	               request= $.ajax({
-                    url: '<?= site_url('ExitMotor') ?>',
+                    url: 'http://localhost/Entry-Gate-Bank-Nagari/Web-Services/ExitMotor',
                     type: "post",
                     cache: false,
                     success: function(response) {
                     $('#modal-notifikasi-berhasil').modal('show');
 								$('.notif-title').html("Terimakasih");
 								$('.notif-Teks').html("Biaya Parkir Berhasil di Proses");	
-								printStruk();
-						// location.reload();		
+						location.reload();		
 
                     }
                 });
 }
 function printStruk() {
+
 	              $.ajax({
-                    url: '<?= site_url('Print') ?>',
+                    url: 'http://localhost/Entry-Gate-Bank-Nagari/Web-Services/Print',
                     data: {jsonData: JSON.stringify(database)},
                     type: "post",
 			        dataType: "json",
                     cache: false,
                     success: function(response) {
+                    	alert
                     },
                     complete:function(response) {
-						location.reload();	
 						console.log("Cetak Struk Selesai..YY...");	
+						if (database['jenis']=='roda2') {
+			
+					OpenMotor();
+
+					}else{
+					// OpenMotor();
+
+					OpenMobil()
+					
+					}
 			}
                 });
 }

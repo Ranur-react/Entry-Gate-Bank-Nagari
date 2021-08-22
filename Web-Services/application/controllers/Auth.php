@@ -14,9 +14,11 @@ class Auth extends CI_Controller
             if ($this->session->userdata('levelUser')== 1) {
             
                 # code...
-                redirect('welcome');
+                redirect('kasir');
+            
             }else if ($this->session->userdata('levelUser')== 3) {
-                redirect('Laporan');
+                redirect('kasir');
+               
             } 
             else{
                 redirect('kasir');
