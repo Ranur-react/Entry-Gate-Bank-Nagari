@@ -441,7 +441,7 @@ function printStruk() {
 							<div class="col-md-2">
 						        <div class="form-group">
 					                <label>No Plat </label>
-			                            <input  type="text" oninput="noplatInput()" name="noplat" value="" placeholder="BA 0000 xx" id="input-plat" class="form-control">
+			                            <input  type="text" oninput="noplatInput()" name="noplat" value="" placeholder="BA 0000 xx" value="BA xx FE" id="input-plat" class="form-control">
 										<div class="medium-Info">*</div>
 								</div>
 							</div>

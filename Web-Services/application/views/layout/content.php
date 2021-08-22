@@ -48,11 +48,12 @@
 
 
 	$( document ).ready(function() {
-OnlineMobil() ;
-OnlineMotor();
+// OnlineMobil() ;
+
+// OnlineMotor();
 	setTimeout(()=>{
-	// OnlineMobil();
-	// OnlineMotor();
+//	OnlineMobil();
+//	OnlineMotor();
 	},30000);
     // console.log( "ready!" );
 });
@@ -109,57 +110,14 @@ OnlineMotor();
 					OnlineMobil();
             });	
 
-function OnlineMobil() {
-	var buton=$('.btnParkirMobil');
-	var Informasi=$('.Informasi');
-	               request= $.ajax({
-                    url: '<?= site_url('EntryMobil') ?>',
-                    type: "post",
-                    dataType: "json",
-                    cache: false,
-                    beforeSend: function(response) {
-						// alert("Before");
-                        buton.attr('disabled', 'disabled');
-                            buton.removeClass('btn-danger');
-                            buton.addClass('btn-success');
-                        buton.html('<i class="fa fa-spin fa-spinner"></i> Online');
-                        console.log(response)
-                        Informasi.html(succesOnline);
 
-                    },
-                    success: function(response) {
-                    		<?php  
-                    	if (level() == 1) { ?>
-								window.focus()
-                    		<?php }
-                    		?>
-  						console.log(response);
-                        Informasi.html(GagalOnline);
-                    },
-                    complete: function() {
-                        Informasi.html(GagalOnline);
-                        <?php  
-                    	if (level() == 1) { ?>
-								window.focus()
-                    		<?php }
-                    		?>
-        	  						buton.removeAttr('disabled');
-  						buton.removeClass('btn-success');
-  						buton.addClass('btn-danger');
-                        buton.html('<i class="fa fa-power-off"></i>');
-                        OnlineMobil();
-                    }
-                });
-}
-
-	            $(document).on('click', '.btnParkirMotor', function(e) {
-	            	OnlineMotor();
-            });	
-	            function OnlineMotor() {
-	            	var buton=$('.btnParkirMotor');
-	            	var Informasi=$('.InformasiMotor');
+    function OnlineMobil() {
+    	var buton=$('.btnParkirMobil');
+		var Informasi=$('.Informasi');
+	           
                 $.ajax({
-                    url: '<?= site_url('EntryMotor')  ?>',
+                     url: '<?= site_url('EntryMobil')  ?>',
+                    // url: 'http://localhost/Entry-Gate-Bank-Nagari/Web-Services/SOCKET_PARKIR_V3/index.php',
                     type: "post",
                     dataType: "json",
                     cache: false,
@@ -169,32 +127,84 @@ function OnlineMobil() {
                             buton.removeClass('btn-danger');
                             buton.addClass('btn-success');
                         buton.html('<i class="fa fa-spin fa-spinner"></i> Online');
-                        console.log(response)
+                        // console.log(response)
                         Informasi.html(succesOnline);
 
                     },
                     success: function(response) {
-  						console.log(response);
-                        Informasi.html(GagalOnline);
-                        <?php  
+                    	
+                    	if(response.status){
+                    	console.log("succes Response")
+                    	console.log(response)
+		                    OnlineMobil()
+                    	}else{
+                    		console.log("Filed Response")
+	                    	console.log(response)
+	                        Informasi.html(GagalOnline);
+	  						buton.removeAttr('disabled');
+	  						buton.removeClass('btn-success');
+	  						buton.addClass('btn-danger');
+	                        buton.html('<i class="fa fa-power-off"></i>');
+          
+                    	}
+
+			              <?php  
                     	if (level() == 1) { ?>
 								window.focus()
                     		<?php }
                     		?>
+
                     },
-                    complete: function() {
-                    	<?php  
+
+                });
+	            }
+$(document).on('click', '.btnParkirMotor', function(e) {
+	OnlineMotor();
+});	
+	            function OnlineMotor() {
+	            	var buton=$('.btnParkirMotor');
+	            	var Informasi=$('.InformasiMotor');
+                $.ajax({
+                    // url: '<?= site_url('EntryMotor')  ?>',
+                    url: 'http://localhost/Entry-Gate-Bank-Nagari/Web-Services/SOCKET_PARKIR_V3_Motor/index.php',
+                    type: "post",
+                    dataType: "json",
+                    cache: false,
+                   beforeSend: function(response) {
+						// alert("Before");
+                        buton.attr('disabled', 'disabled');
+                            buton.removeClass('btn-danger');
+                            buton.addClass('btn-success');
+                        buton.html('<i class="fa fa-spin fa-spinner"></i> Online');
+                        // console.log(response)
+                        Informasi.html(succesOnline);
+
+                    },
+                    success: function(response) {
+
+                    	if(response.status){
+                    	console.log("succes Response")
+                    	console.log(response)
+		                    OnlineMotor()
+                    	}else{
+                    		console.log("Filed Response")
+	                    	console.log(response)
+	                        Informasi.html(GagalOnline);
+	  						buton.removeAttr('disabled');
+	  						buton.removeClass('btn-success');
+	  						buton.addClass('btn-danger');
+	                        buton.html('<i class="fa fa-power-off"></i>');
+          
+                    	}
+
+			              <?php  
                     	if (level() == 1) { ?>
 								window.focus()
                     		<?php }
                     		?>
-                        Informasi.html(GagalOnline);
-        	  						buton.removeAttr('disabled');
-  						buton.removeClass('btn-success');
-  						buton.addClass('btn-danger');
-                        buton.html('<i class="fa fa-power-off"></i>');
-                    OnlineMotor()
-                    }
+
+                    },
+
                 });
 	            }
 

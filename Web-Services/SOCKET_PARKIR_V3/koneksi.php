@@ -13,9 +13,9 @@
 	
 
 $qry = mysqli_fetch_array(mysqli_query($conn,"SELECT*FROM `tb_config` WHERE `tb_config`.key='01' AND  OPTIONS='board' ;"));
-$idcek = mysqli_fetch_array(mysqli_query($conn,"SELECT*FROM `tb_config` WHERE OPTIONS='idparkir';"));
-//idparkir-tobankir
-$connfig['idparkir']=$idcek['value'];
+// $idcek = mysqli_fetch_array(mysqli_query($conn,"SELECT*FROM `tb_config` WHERE OPTIONS='idparkir';"));
+// //idparkir-tobankir
+// $connfig['idparkir']=01;
 	//Koneksi Hardware
 	$connfig['host']=$qry['value'];
 	$connfig['port']=5002;
