@@ -48,13 +48,10 @@
 
 
 	$( document ).ready(function() {
-OnlineMobil() ;
+// OnlineMobil() ;
 
-OnlineMotor();
-	setTimeout(()=>{
-//	OnlineMobil();
-//	OnlineMotor();
-	},30000);
+// OnlineMotor();
+
     // console.log( "ready!" );
 });
 	var succesOnline=`
@@ -70,6 +67,7 @@ OnlineMotor();
 												  <h3 class="box-title">INFORMASI</h3>
 												</div>
 												<div class="box-body">
+												
 												  <ol>
 												    <li>Pastikan Sistem selalu dalam keadaan Online <i class="fa fa-check-circle-o"></i></li>
 												    <li>Jangan Menutup Browser Setup Sistem</li>
@@ -111,6 +109,7 @@ OnlineMotor();
             });	
 
 
+
     function OnlineMobil() {
     	var buton=$('.btnParkirMobil');
 		var Informasi=$('.Informasi');
@@ -136,7 +135,6 @@ OnlineMotor();
                     	if(response.status){
                     	console.log("succes Response")
                     	console.log(response)
-		                    OnlineMobil()
                     	}else{
                     		console.log("Filed Response")
 	                    	console.log(response)
@@ -147,6 +145,7 @@ OnlineMotor();
 	                        buton.html('<i class="fa fa-power-off"></i>');
           
                     	}
+		                    OnlineMobil()
 
 								window.focus()
 		
@@ -161,8 +160,8 @@ $(document).on('click', '.btnParkirMotor', function(e) {
 	            	var buton=$('.btnParkirMotor');
 	            	var Informasi=$('.InformasiMotor');
                 $.ajax({
-                    // url: '<?= site_url('EntryMotor')  ?>',
-                    url: 'http://localhost/Entry-Gate-Bank-Nagari/Web-Services/SOCKET_PARKIR_V3_Motor/index.php',
+                    url: '<?= site_url('EntryMotor')  ?>',
+                    // url: 'http://localhost/Entry-Gate-Bank-Nagari/Web-Services/SOCKET_PARKIR_V3_Motor/index.php',
                     type: "post",
                     dataType: "json",
                     cache: false,

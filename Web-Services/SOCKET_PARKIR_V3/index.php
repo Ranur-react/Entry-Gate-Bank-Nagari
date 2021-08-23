@@ -13,7 +13,9 @@ $d['mesin']="MOBIL";
 $d['id_mesin']=01;
 $d['status']=true;
 $d['vld_status']=false;
-    	
+while (true) {
+    		# code...
+    	 	
 $data= Read($connfig);
 	//1. jika mobil terdeteksi VLD 
 if($data == $msg=chr(0xA6)."IN3ON".chr(0xA9)){
@@ -35,7 +37,7 @@ if($data == $msg=chr(0xA6)."IN3ON".chr(0xA9)){
 		// 6. KAMERA Melakukan Capture Hasil Capture Insert ke Folder dengan folder name 'ID' (php Capture_Vehcle())
 		$CameraConfig['folder']=$id;
 		Write($connfig,'TRIG1');
-		CaptureImages($CameraConfig,$id);
+		// CaptureImages($CameraConfig,$id);
 		// 7. Setelah Driver Mengambil Kertas Barcode, Controller Membuka Gate (php Write ='OUT1ON')
 	}
 	if($data == $msg=chr(0xA6)."IN2ON".chr(0xA9)){
@@ -54,7 +56,7 @@ else if($data == $msg=chr(0xA6)."IN1ON".chr(0xA9)){
 
 } 
 //Note
-
+}   
 // Setelah Write, Read akan dihentikan oleh Library, jadi usahakan jika ingin READ pastikan Write Setelahnnya
 echo json_encode($d);
 
