@@ -26,7 +26,7 @@ include 'sensorCount.php';
 if($data['levelValue'] =='0001' & $adult=='true'){
 	$qry = mysqli_fetch_array(mysqli_query($conn,"SELECT*FROM `tb_tiketmasuk` WHERE `id_denc_serial`='$serial';"));
 						if (!empty($qry['id_denc_serial'])) {
-							mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku karena sudah digunakan','already_used', '05',now());");
+							//mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku karena sudah digunakan','already_used', '05',now());");
 						echo "false";	
 						}else{
 							$level=$data['levelValue'];
@@ -39,7 +39,7 @@ if($data['levelValue'] =='0001' & $adult=='true'){
 							 	# code...
 								echo "true";	
 							 }else{
-							mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku /Kdaluarsa','ove_due', '05',now());");
+							//mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku /Kdaluarsa','ove_due', '05',now());");
 
 								echo "Kadaluarsa ";	
 							 }
@@ -54,7 +54,7 @@ else if($data['levelValue'] =='0002' & $adult=='true'){
 	////koding esekusi
 					$qry = mysqli_fetch_array(mysqli_query($conn,"SELECT*FROM `tb_tiketmasuk` WHERE `id_denc_serial`='$serial';"));
 						if (!empty($qry['id_denc_serial'])) {
-							mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku karena sudah digunakan','already_used', '05',now());");
+						//	mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku karena sudah digunakan','already_used', '05',now());");
 						echo "false";	
 						}else{
 							$level=$data['levelValue'];
@@ -66,7 +66,7 @@ else if($data['levelValue'] =='0002' & $adult=='true'){
 							 	# code...
 								echo "true";	
 							 }else{
-							mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku /Kdaluarsa','ove_due', '05',now());");
+							//mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku /Kdaluarsa','ove_due', '05',now());");
 
 								echo "Kadaluarsa ";	
 							 }
@@ -78,7 +78,7 @@ else if($data['levelValue'] =='0003' & $adult=='true'){
 	////koding esekusi
 					$qry = mysqli_fetch_array(mysqli_query($conn,"SELECT*FROM `tb_tiketmasuk` WHERE `id_denc_serial`='$serial';"));
 						if (!empty($qry['id_denc_serial'])) {
-							mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku karena sudah digunakan','already_used', '05',now());");
+							//mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku karena sudah digunakan','already_used', '05',now());");
 						echo "false";	
 						}else{
 							$level=$data['levelValue'];
@@ -90,7 +90,7 @@ else if($data['levelValue'] =='0003' & $adult=='true'){
 							 	# code...
 								echo "true";	
 							 }else{
-							mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku /Kdaluarsa','ove_due', '05',now());");
+							//mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku /Kdaluarsa','ove_due', '05',now());");
 
 								echo "Kadaluarsa ";	
 							 }
@@ -100,7 +100,7 @@ else if($data['levelValue'] =='0003' & $adult=='true'){
 	////koding esekusi
 					$qry = mysqli_fetch_array(mysqli_query($conn,"SELECT*FROM `tb_tiketmasuk` WHERE `id_denc_serial`='$serial';"));
 						if (!empty($qry['id_denc_serial'])) {
-							mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku karena sudah digunakan','already_used', '05',now());");
+							//mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku karena sudah digunakan','already_used', '05',now());");
 						echo "false";	
 						}else{
 							$level=$data['levelValue'];
@@ -112,7 +112,7 @@ else if($data['levelValue'] =='0003' & $adult=='true'){
 							 	# code...
 								echo "true";	
 							 }else{
-							mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku /Kdaluarsa','ove_due', '05',now());");
+							//mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku /Kdaluarsa','ove_due', '05',now());");
 
 								echo "Kadaluarsa ";	
 							 }

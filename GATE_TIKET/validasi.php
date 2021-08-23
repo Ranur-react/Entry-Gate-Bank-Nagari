@@ -25,7 +25,7 @@ if (isset($_GET['data'])) {
 				}else{
 				echo "false";
 
-				mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$id. yang digunakan sudah Tidak Berlaku','already_used', '05',now());");
+				//mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$id. yang digunakan sudah Tidak Berlaku','already_used', '05',now());");
 				}
 	}else{
 		// echo "Data : ".$id." TIDAK Ada di dalam database";
@@ -33,7 +33,7 @@ if (isset($_GET['data'])) {
 		// echo json_encode($json);
 	echo "false";
 		
-		mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$id. yang digunakan tidak ada di dalam database','failure_ticket', '05',now());");
+		//mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$id. yang digunakan tidak ada di dalam database','failure_ticket', '05',now());");
 	}
 
 

@@ -6,10 +6,10 @@ class Parkir extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		if ($this->session->userdata('status_login') == true)
-			cek_user();
-		else
-			redirect('logout');
+		// if ($this->session->userdata('status_login') == true)
+		// 	cek_user();
+		// else
+		// 	redirect('logout');
 		$this->load->model('gate/Mentry');
 		$this->load->model('gate/Mexit');
 		$this->load->model('gate/Mconfig');

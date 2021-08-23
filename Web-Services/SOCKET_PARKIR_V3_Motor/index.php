@@ -34,9 +34,9 @@ if($data == $msg=chr(0xA6)."IN3ON".chr(0xA9)){
 		PrintBarcode($id,$connfig);
 		// 6. KAMERA Melakukan Capture Hasil Capture Insert ke Folder dengan folder name 'ID' (php Capture_Vehcle())
 		$CameraConfig['folder']=$id;
-		CaptureImages($CameraConfig,$id);
-		// 7. Setelah Driver Mengambil Kertas Barcode, Controller Membuka Gate (php Write ='OUT1ON')
 		Write($connfig,'TRIG1');
+		// 7. Setelah Driver Mengambil Kertas Barcode, Controller Membuka Gate (php Write ='OUT1ON')
+		CaptureImages($CameraConfig,$id);
 	}
 	if($data == $msg=chr(0xA6)."IN2ON".chr(0xA9)){
 		$d['btn_status']='red';	

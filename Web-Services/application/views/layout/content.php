@@ -48,9 +48,9 @@
 
 
 	$( document ).ready(function() {
-// OnlineMobil() ;
+OnlineMobil() ;
 
-// OnlineMotor();
+OnlineMotor();
 	setTimeout(()=>{
 //	OnlineMobil();
 //	OnlineMotor();
@@ -148,12 +148,8 @@
           
                     	}
 
-			              <?php  
-                    	if (level() == 1) { ?>
 								window.focus()
-                    		<?php }
-                    		?>
-
+		
                     },
 
                 });
@@ -196,12 +192,8 @@ $(document).on('click', '.btnParkirMotor', function(e) {
 	                        buton.html('<i class="fa fa-power-off"></i>');
           
                     	}
-
-			              <?php  
-                    	if (level() == 1) { ?>
 								window.focus()
-                    		<?php }
-                    		?>
+
 
                     },
 
@@ -225,7 +217,7 @@ $(document).on('click', '.btnParkirMotor', function(e) {
 		</div> -->
 		<div class="alert alert-warning alert-dark m-b-1">
 			<button type="button" class="close" data-dismiss="alert">×</button>
-			<strong>Hei <?= user() ?></strong>, Selamat datang , Jangan lupa Aktifkan Gerbang Parkir agar pengunjung dapat memasuki area Parkir dengan semestinya	
+			<strong>Hei Admin Kasir <?php //user() ?></strong>, Selamat datang , Jangan lupa Aktifkan Gerbang Parkir agar pengunjung dapat memasuki area Parkir dengan semestinya	
 		</div>
 	</div>
 

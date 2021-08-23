@@ -29,14 +29,14 @@ if($data == $msg=chr(0xA6)."IN3ON".chr(0xA9)){
 		$id= GenerateID_Entry($d['id_mesin']);
 		$d['id_parkir']=$id;
 		// 4. Simpan ID Parkir
-		mysqli_query($conn, "INSERT INTO `tb_entry` (`id_entry`, `gate_id`,date) VALUES ('$id', '02',now());");
+		mysqli_query($conn, "INSERT INTO `tb_entry` (`id_entry`, `gate_id`,date) VALUES ('$id', '01',now());");
 		// 5. Print Barcode
 		PrintBarcode($id,$connfig);
 		// 6. KAMERA Melakukan Capture Hasil Capture Insert ke Folder dengan folder name 'ID' (php Capture_Vehcle())
 		$CameraConfig['folder']=$id;
+		Write($connfig,'TRIG1');
 		CaptureImages($CameraConfig,$id);
 		// 7. Setelah Driver Mengambil Kertas Barcode, Controller Membuka Gate (php Write ='OUT1ON')
-		Write($connfig,'TRIG1');
 	}
 	if($data == $msg=chr(0xA6)."IN2ON".chr(0xA9)){
 		$d['btn_status']='red';	

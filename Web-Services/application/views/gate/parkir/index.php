@@ -343,6 +343,8 @@ function printStruk() {
 			        dataType: "json",
                     cache: false,
                     success: function(response) {
+						location.reload();	
+                    	
                     },
                     complete:function(response) {
 						location.reload();	
