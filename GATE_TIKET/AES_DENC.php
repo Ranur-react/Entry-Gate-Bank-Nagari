@@ -20,7 +20,7 @@ function decrypt($data, $key) {
         echo "Encripsi Tiket Bermasalah !!";
          die;
      }else if(strlen($data['dateValue'])<14){
-        echo "Encripsi Gagal !! periksa Key AES ECB atau Periksa Krakter Yang Kamu Kirimkan";
+        echo "Encripsi Gagal !! result ".$rest." periksa Key AES ECB atau Periksa Krakter Yang Kamu Kirimkan";
         echo "<br>";
         echo $v;
          die;

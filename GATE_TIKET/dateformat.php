@@ -18,7 +18,7 @@
 	if ($date >= $today) {
 		return true;
 	}else{
-		return false;
+		return false; //harusnya false
 
 	}
 }

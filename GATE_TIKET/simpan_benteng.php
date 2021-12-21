@@ -23,7 +23,8 @@ include 'dateformat.php';
 
 
 						if ($data['levelValue'] =='0004'){
-										echo "true";
+							$level=$data['levelValue'];
+										echo "$level";
 							 	}else{
 					 				if (!empty($qry['id_denc_serial'])) {
 					 					$level=$data['levelValue'];
@@ -31,7 +32,7 @@ include 'dateformat.php';
 											 $date_serial=dateFormat($data['dateValue']);
 											 $time_serial=timeFormat($data['dateValue']);
 											mysqli_query($conn,"INSERT INTO tb_tiket_gagal (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`,`status`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '05','ID Tiket Sudah pernah DIGUNAKAN')");
-										echo "false $plainteks";	
+										echo "fals data :$level";	
 										}else{
 											$level=$data['levelValue'];
 											$nomorbuktiValue=$data['nomorbuktiValue'];
@@ -39,8 +40,8 @@ include 'dateformat.php';
 											 $time_serial=timeFormat($data['dateValue']);
 
 											 if (dateEqualas($date_serial)) {
-												// mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '05')");
-												echo "true";	
+												mysqli_query($conn,"INSERT INTO `db_banknagari`.`tb_tiketmasuk` (`id_ecn`, `id_denc_serial`, `date_serial`, `time_serial`, `level_tiket`, `nomor_bukti`, `date_in`, `id_gate`) VALUES ('$chipperteks', '$plainteks', '$date_serial', '$time_serial', '$level', '$nomorbuktiValue', NOW(), '05')");
+												echo "$level";	
 
 											 
 											 }
@@ -54,7 +55,7 @@ include 'dateformat.php';
 
 
 											 		echo "Kadaluarsa ";	
-											//mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku /Kdaluarsa','ove_du	e', '05',now());");
+											//mysqli_query($conn,"INSERT INTO `tb_log` ( id,log,jenis_log, gate_id,date) VALUES (NULL, 'iD Tiket .$plainteks. yang digunakan sudah Tidak Berlaku /Kdaluarsa','ove_due', '05',now());");
 												
 											 }
 										}
